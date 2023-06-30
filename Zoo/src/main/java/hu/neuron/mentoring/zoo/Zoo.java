@@ -1,3 +1,4 @@
+package hu.neuron.mentoring.zoo;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;

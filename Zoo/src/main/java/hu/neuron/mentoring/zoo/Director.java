@@ -1,3 +1,4 @@
+package hu.neuron.mentoring.zoo;
 
 public class Director extends Employee {
 

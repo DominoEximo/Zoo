@@ -1,3 +1,4 @@
+package hu.neuron.mentoring.zoo;
 import java.util.ArrayList;
 
 public class Main {
