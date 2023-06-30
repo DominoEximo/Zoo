@@ -5,14 +5,14 @@ public class Animal {
 
 	private Species species;
 	private String nickname;
-	private int birth_date;
-	private char gender;
+	private Integer birthDate;
+	private Character gender;
 
-	public Animal(Species species, String nickname, int birth_date, char gender) {
+	public Animal(Species species, String nickname, Integer birth_date, Character gender) {
 		super();
 		this.species = species;
 		this.nickname = nickname;
-		this.birth_date = birth_date;
+		this.birthDate = birth_date;
 		this.gender = gender;
 	}
 
@@ -33,11 +33,11 @@ public class Animal {
 	}
 
 	public int getBirth_date() {
-		return birth_date;
+		return birthDate;
 	}
 
 	public void setBirth_date(int birth_date) {
-		this.birth_date = birth_date;
+		this.birthDate = birth_date;
 	}
 
 	public char getGender() {
@@ -50,7 +50,7 @@ public class Animal {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(birth_date, gender, nickname, species);
+		return Objects.hash(birthDate, gender, nickname, species);
 	}
 
 	@Override
@@ -62,13 +62,13 @@ public class Animal {
 		if (getClass() != obj.getClass())
 			return false;
 		Animal other = (Animal) obj;
-		return birth_date == other.birth_date && gender == other.gender && Objects.equals(nickname, other.nickname)
+		return birthDate == other.birthDate && gender == other.gender && Objects.equals(nickname, other.nickname)
 				&& species == other.species;
 	}
 
 	@Override
 	public String toString() {
-		return "Animal [species=" + species + ", nickname=" + nickname + ", birth_date=" + birth_date + ", gender="
+		return "Animal [species=" + species + ", nickname=" + nickname + ", birth_date=" + birthDate + ", gender="
 				+ gender + "]";
 	}
 

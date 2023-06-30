@@ -4,7 +4,6 @@ public class Director extends Employee {
 
 	public Director(String name, int birth_date, char gender) {
 		super(name, birth_date, gender);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
