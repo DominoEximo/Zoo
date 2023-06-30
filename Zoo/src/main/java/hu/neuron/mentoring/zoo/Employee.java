@@ -4,13 +4,13 @@ import java.util.Objects;
 public abstract class Employee {
 
 	private String name;
-	private int birth_date;
+	private int birthDate;
 	private char gender;
 
 	public Employee(String name, int birth_date, char gender) {
 		super();
 		this.name = name;
-		this.birth_date = birth_date;
+		this.birthDate = birth_date;
 		this.gender = gender;
 	}
 
@@ -23,11 +23,11 @@ public abstract class Employee {
 	}
 
 	public int getBirth_date() {
-		return birth_date;
+		return birthDate;
 	}
 
 	public void setBirth_date(int birth_date) {
-		this.birth_date = birth_date;
+		this.birthDate = birth_date;
 	}
 
 	public char getGender() {
@@ -40,7 +40,7 @@ public abstract class Employee {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(birth_date, gender, name);
+		return Objects.hash(birthDate, gender, name);
 	}
 
 	@Override
@@ -52,12 +52,12 @@ public abstract class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		return birth_date == other.birth_date && gender == other.gender && Objects.equals(name, other.name);
+		return birthDate == other.birthDate && gender == other.gender && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", birth_date=" + birth_date + ", gender=" + gender + "]";
+		return "Employee [name=" + name + ", birth_date=" + birthDate + ", gender=" + gender + "]";
 	}
 
 }
