@@ -85,9 +85,9 @@ class Zoo {
 
 		Species problematicAnimal = null;
 
-		for (Employee gondozo : employees) {
-			if (gondozo instanceof GondoZoo && !gondozo.equals(employee)) {
-				caredAnimals.addAll(((GondoZoo) gondozo).getSuppliedAnimals());
+		for (Employee caretaker : employees) {
+			if (caretaker instanceof GondoZoo && !caretaker.equals(employee)) {
+				caredAnimals.addAll(((GondoZoo) caretaker).getSuppliedAnimals());
 			}
 		}
 
