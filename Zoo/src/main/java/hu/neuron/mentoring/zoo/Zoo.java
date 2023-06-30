@@ -134,13 +134,13 @@ class Zoo {
 	}
 
 	public void listAnimals() {
-		try {
+		if (animals != null) {
 			for (Animal animal : animals) {
 				logger.info(String.format("%s", animal));
 			}
-		} catch (NullPointerException e) {
-			logger.info("Az állatkert űres!");
 		}
+			
+		
 	}
 
 	public void sortAnimals() {
