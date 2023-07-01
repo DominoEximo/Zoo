@@ -58,6 +58,18 @@ class Zoo {
 		}
 
 	}
+	
+	public void autoLogAllJobs(ArrayList<Employee> employees) {
+		
+		Integer time;
+		
+		for (Employee employee : employees) {
+			if (employee instanceof Cleaner) {
+				
+				}
+			}
+		}
+	
 
 	public void listLoggedJobs() {
 		if (loggedJobs.size() == 0) {
