@@ -1,13 +1,13 @@
 package hu.neuron.mentoring.zoo;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class GondoZoo extends Employee {
 
 	private ArrayList<Species> suppliedAnimals;
 
-	public GondoZoo(String name, Calendar birthDate, Calendar appointmentDate, Character gender, ArrayList<Species> suppliedAnimals) {
+	public GondoZoo(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<Species> suppliedAnimals) {
 		super(name, birthDate, appointmentDate, gender);
 		this.suppliedAnimals = suppliedAnimals;
 	}

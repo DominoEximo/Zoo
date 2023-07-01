@@ -1,14 +1,14 @@
 package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class Cleaner extends Employee {
 
 	private ArrayList<CleanedArea> cleanedAreas;
 
-	public Cleaner(String name, Calendar birthDate, Calendar appointmentDate, Character gender, ArrayList<CleanedArea> cleanedAreas) {
+	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<CleanedArea> cleanedAreas) {
 		super(name, birthDate,appointmentDate, gender);
 		this.cleanedAreas = cleanedAreas;
 	}
