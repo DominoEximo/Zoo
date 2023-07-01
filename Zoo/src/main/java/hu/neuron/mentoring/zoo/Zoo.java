@@ -1,4 +1,5 @@
 package hu.neuron.mentoring.zoo;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,9 +25,12 @@ class Zoo {
 
 	private List<Animal> animals;
 
+	private ArrayList<Job> loggedJobs;
+
 	public Zoo() {
 		employees = new ArrayList<>();
 		animals = new ArrayList<>();
+		loggedJobs = new ArrayList<>();
 		counter++;
 	}
 
@@ -36,6 +40,34 @@ class Zoo {
 
 	{
 		logger.info(String.format("Az állatkert megalapulása: %s \n", LocalTime.now()));
+	}
+
+	public void logJob(Integer time, String description, Employee employee) {
+		Boolean isValid = false;
+
+		if (employees.contains(employee)) {
+			isValid = true;
+		}
+
+		if (isValid) {
+			Job jobToLog = new Job(time, description, employee);
+
+			loggedJobs.add(jobToLog);
+		} else {
+			logger.info("Nem található a rendszerben ilyen dolgozó");
+		}
+
+	}
+
+	public void listLoggedJobs() {
+		if (loggedJobs.size() == 0) {
+			logger.info("Jelenleg nincsenek feljegyzett munkák.");
+		} else {
+			for (Job job : loggedJobs) {
+				logger.info(String.format("%s", job));
+			}
+		}
+
 	}
 
 	public static void listZoos() {
@@ -65,7 +97,7 @@ class Zoo {
 				}
 			}
 		}
-		
+
 		if (Boolean.TRUE.equals(canBuy)) {
 			this.animals.add(animal);
 			logger.info(String.format("Az állatkert befogadta a(z) %s nevű állatot! \n", animal.getNickname()));
@@ -140,8 +172,7 @@ class Zoo {
 				logger.info(String.format("%s", animal));
 			}
 		}
-			
-		
+
 	}
 
 	public void sortAnimals() {
