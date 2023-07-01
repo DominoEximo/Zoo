@@ -1,4 +1,5 @@
 package hu.neuron.mentoring.zoo;
+
 import java.util.Objects;
 
 public abstract class Employee {
