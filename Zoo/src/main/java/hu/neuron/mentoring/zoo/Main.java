@@ -1,12 +1,22 @@
 package hu.neuron.mentoring.zoo;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Zoo zoo1 = new Zoo();
+		
+		Calendar adamBirthDate = Calendar.getInstance();
+		adamBirthDate.set(Calendar.YEAR,1950);
+		adamBirthDate.set(Calendar.MONTH,Calendar.FEBRUARY);
+		adamBirthDate.set(Calendar.DAY_OF_MONTH,2);
+		Calendar adamAppointmentDate = Calendar.getInstance();
+		adamAppointmentDate.set(Calendar.YEAR,2008);
+		adamAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
+		adamAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
 
-		zoo1.setDirector(new Director("Adam", 19960205, 'm'));
+		zoo1.setDirector(new Director("Adam", adamBirthDate, adamAppointmentDate, 'm'));
 
 		zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 
@@ -14,19 +24,46 @@ public class Main {
 
 		carlAnimals.add(Species.TIGER);
 		carlAnimals.add(Species.PENGUIN);
-
-		zoo1.addEmployee(new GondoZoo("Carl", 20020405, 'm', carlAnimals));
+		
+		Calendar carlBirthDate = Calendar.getInstance();
+		carlBirthDate.set(Calendar.YEAR,1970);
+		carlBirthDate.set(Calendar.MONTH,Calendar.MARCH);
+		carlBirthDate.set(Calendar.DAY_OF_MONTH,7);
+		Calendar carlAppointmentDate = Calendar.getInstance();
+		carlAppointmentDate.set(Calendar.YEAR,2010);
+		carlAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
+		carlAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
+		
+		zoo1.addEmployee(new GondoZoo("Carl", carlBirthDate, carlAppointmentDate, 'm', carlAnimals));
 
 		zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
-
-		zoo1.setDirector(new Director("Eva", 19960207, 'f'));
+		
+		Calendar evaBirthDate = Calendar.getInstance();
+		evaBirthDate.set(Calendar.YEAR,1990);
+		evaBirthDate.set(Calendar.MONTH,Calendar.APRIL);
+		evaBirthDate.set(Calendar.DAY_OF_MONTH,4);
+		Calendar evaAppointmentDate = Calendar.getInstance();
+		evaAppointmentDate.set(Calendar.YEAR,2010);
+		evaAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
+		evaAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
+		
+		zoo1.setDirector(new Director("Eva", evaBirthDate,evaAppointmentDate, 'f'));
 
 		ArrayList<Species> earlAnimals = new ArrayList<>();
 
 		earlAnimals.add(Species.PEACOCK);
 		earlAnimals.add(Species.GIRAFFE);
+		
+		Calendar earlBirthDate = Calendar.getInstance();
+		earlBirthDate.set(Calendar.YEAR,1990);
+		earlBirthDate.set(Calendar.MONTH,Calendar.APRIL);
+		earlBirthDate.set(Calendar.DAY_OF_MONTH,2);
+		Calendar earlAppointmentDate = Calendar.getInstance();
+		earlAppointmentDate.set(Calendar.YEAR,2015);
+		earlAppointmentDate.set(Calendar.MONTH,Calendar.JUNE);
+		earlAppointmentDate.set(Calendar.DAY_OF_MONTH,10);
 
-		zoo1.addEmployee(new GondoZoo("Earl", 19770603, 'm', earlAnimals));
+		zoo1.addEmployee(new GondoZoo("Earl", earlBirthDate, earlAppointmentDate, 'm', earlAnimals));
 
 		zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 
