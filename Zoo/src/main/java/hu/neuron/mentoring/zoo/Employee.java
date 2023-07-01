@@ -1,17 +1,20 @@
 package hu.neuron.mentoring.zoo;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public abstract class Employee {
 
 	private String name;
-	private int birthDate;
-	private char gender;
+	private Calendar birthDate;
+	private Calendar appointmentDate;
+	private Character gender;
 
-	public Employee(String name, int birth_date, char gender) {
-		super();
+	public Employee(String name, Calendar birthDate,Calendar appointmentDate, char gender) {
 		this.name = name;
-		this.birthDate = birth_date;
+		this.birthDate = birthDate;
+		this.appointmentDate = appointmentDate;
 		this.gender = gender;
 	}
 
@@ -23,11 +26,11 @@ public abstract class Employee {
 		this.name = name;
 	}
 
-	public int getBirth_date() {
+	public Calendar getBirth_date() {
 		return birthDate;
 	}
 
-	public void setBirth_date(int birth_date) {
+	public void setBirth_date(Calendar birth_date) {
 		this.birthDate = birth_date;
 	}
 
@@ -35,7 +38,7 @@ public abstract class Employee {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(Character gender) {
 		this.gender = gender;
 	}
 
@@ -58,7 +61,7 @@ public abstract class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", birth_date=" + birthDate + ", gender=" + gender + "]";
+		return "Employee [name=" + name + ", birth_date=" + birthDate +", appointment_date=" + appointmentDate + ", gender=" + gender + "]";
 	}
 
 }

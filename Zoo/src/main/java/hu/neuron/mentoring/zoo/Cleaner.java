@@ -1,14 +1,15 @@
 package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Cleaner extends Employee {
 
 	private ArrayList<CleanedArea> cleanedAreas;
 
-	public Cleaner(String name, int birth_date, char gender, ArrayList<CleanedArea> cleanedAreas) {
-		super(name, birth_date, gender);
+	public Cleaner(String name, Calendar birthDate, Calendar appointmentDate, Character gender, ArrayList<CleanedArea> cleanedAreas) {
+		super(name, birthDate,appointmentDate, gender);
 		this.cleanedAreas = cleanedAreas;
 	}
 
@@ -42,8 +43,7 @@ public class Cleaner extends Employee {
 
 	@Override
 	public String toString() {
-		return "Cleaner [cleanedAreas=" + cleanedAreas + ", Name=" + getName() + ", Birth_date="
-				+ getBirth_date() + ", Gender=" + getGender();
+		return super.toString() + "cleanedAreas=" + cleanedAreas;
 	}
 	
 	

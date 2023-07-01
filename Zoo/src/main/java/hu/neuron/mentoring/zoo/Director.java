@@ -1,9 +1,11 @@
 package hu.neuron.mentoring.zoo;
 
+import java.util.Calendar;
+
 public class Director extends Employee {
 
-	public Director(String name, int birth_date, char gender) {
-		super(name, birth_date, gender);
+	public Director(String name, Calendar birthDate,Calendar appointmentDate, Character gender) {
+		super(name, birthDate, appointmentDate, gender);
 	}
 
 	@Override
