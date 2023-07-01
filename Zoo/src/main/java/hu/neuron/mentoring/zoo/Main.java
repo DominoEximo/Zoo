@@ -16,7 +16,7 @@ public class Main {
 		adamAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
 		adamAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
 
-		zoo1.setDirector(new Director("Adam", adamBirthDate, adamAppointmentDate, 'm'));
+		zoo1.setDirector(new Director("Adam", adamBirthDate.getTime(), adamAppointmentDate.getTime(), 'm'));
 
 		zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 
@@ -30,11 +30,8 @@ public class Main {
 		carlBirthDate.set(Calendar.MONTH,Calendar.MARCH);
 		carlBirthDate.set(Calendar.DAY_OF_MONTH,7);
 		Calendar carlAppointmentDate = Calendar.getInstance();
-		carlAppointmentDate.set(Calendar.YEAR,2010);
-		carlAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
-		carlAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
 		
-		zoo1.addEmployee(new GondoZoo("Carl", carlBirthDate, carlAppointmentDate, 'm', carlAnimals));
+		zoo1.addEmployee(new GondoZoo("Carl", carlBirthDate.getTime(), carlAppointmentDate.getTime(), 'm', carlAnimals));
 
 		zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		
@@ -47,8 +44,11 @@ public class Main {
 		evaAppointmentDate.set(Calendar.MONTH,Calendar.JANUARY);
 		evaAppointmentDate.set(Calendar.DAY_OF_MONTH,1);
 		
-		zoo1.setDirector(new Director("Eva", evaBirthDate,evaAppointmentDate, 'f'));
-
+		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(),evaAppointmentDate.getTime(), 'f'));
+		
+		zoo1.fireDirector();
+		
+		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(),evaAppointmentDate.getTime(), 'f'));
 		ArrayList<Species> earlAnimals = new ArrayList<>();
 
 		earlAnimals.add(Species.PEACOCK);
@@ -63,7 +63,7 @@ public class Main {
 		earlAppointmentDate.set(Calendar.MONTH,Calendar.JUNE);
 		earlAppointmentDate.set(Calendar.DAY_OF_MONTH,10);
 
-		zoo1.addEmployee(new GondoZoo("Earl", earlBirthDate, earlAppointmentDate, 'm', earlAnimals));
+		zoo1.addEmployee(new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
 
 		zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 
