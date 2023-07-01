@@ -3,10 +3,13 @@ package hu.neuron.mentoring.zoo;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -26,10 +29,13 @@ class Zoo {
 
 	private ArrayList<Job> loggedJobs;
 
+	private ArrayList<Employee> rewardApplicables;
+
 	public Zoo() {
 		employees = new ArrayList<>();
 		animals = new ArrayList<>();
 		loggedJobs = new ArrayList<>();
+		rewardApplicables = new ArrayList<>();
 		counter++;
 	}
 
@@ -57,18 +63,17 @@ class Zoo {
 		}
 
 	}
-	
+
 	public void autoLogAllJobs(ArrayList<Employee> employees) {
-		
+
 		Integer time;
-		
+
 		for (Employee employee : employees) {
 			if (employee instanceof Cleaner) {
-				
-				}
+
 			}
 		}
-	
+	}
 
 	public void listLoggedJobs() {
 		if (loggedJobs.size() == 0) {
@@ -76,6 +81,35 @@ class Zoo {
 		} else {
 			for (Job job : loggedJobs) {
 				logger.info(String.format("%s", job));
+			}
+		}
+
+	}
+
+	public void checkRewardApplicability() {
+		if (this.employees.size() == 0) {
+			logger.info("Az állatkertnek nincsenek dolgozói!");
+		}
+		for (Employee employee : this.employees) {
+			if (employee instanceof Director) {
+				continue;
+			} else {
+				long diff = Calendar.getInstance().getTimeInMillis() - employee.getAppointmentDate().getTime();
+				TimeUnit time = TimeUnit.DAYS;
+				long difference = time.convert(diff, TimeUnit.MILLISECONDS);
+				if (difference / 365 > 5) {
+					rewardApplicables.add(employee);
+				}
+			}
+		}
+	}
+
+	public void listRewardApplicables() {
+		if (this.rewardApplicables.size() == 0) {
+			logger.info("Jelenleg senki sem részesül jutalomban.");
+		} else {
+			for (Employee rewardable : this.rewardApplicables) {
+				logger.info(String.format("Jutalomban részesül: %s", rewardable.getName()));
 			}
 		}
 
@@ -89,7 +123,7 @@ class Zoo {
 		try {
 			for (Employee employee : employees) {
 				logger.info(
-						String.format("%s %s %s", employee.getName(), employee.getBirth_date(), employee.getGender()));
+						String.format("%s %s %s", employee.getName(), employee.getBirthDate(), employee.getGender()));
 			}
 		} catch (NullPointerException e) {
 			logger.info("Az állatkertnek nincsenek dolgozói!");
