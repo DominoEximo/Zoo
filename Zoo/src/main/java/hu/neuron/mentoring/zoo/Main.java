@@ -63,6 +63,10 @@ public class Main {
 		zoo2.listAnimals();
 
 		zoo2.listEmployees();
+		
+		zoo2.logJob(30, "Tigris gondozás", zoo2.getEployees().get(0));
+		
+		zoo2.listLoggedJobs();
 
 	}
 
