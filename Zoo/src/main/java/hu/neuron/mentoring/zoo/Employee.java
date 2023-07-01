@@ -26,14 +26,6 @@ public abstract class Employee {
 		this.name = name;
 	}
 
-	public Date getBirth_date() {
-		return birthDate;
-	}
-
-	public void setBirth_date(Date birth_date) {
-		this.birthDate = birth_date;
-	}
-
 	public char getGender() {
 		return gender;
 	}
@@ -42,9 +34,29 @@ public abstract class Employee {
 		this.gender = gender;
 	}
 
+	
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+	
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(birthDate, gender, name);
+		return Objects.hash(appointmentDate, birthDate, gender, name);
 	}
 
 	@Override
@@ -56,12 +68,13 @@ public abstract class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		return birthDate == other.birthDate && gender == other.gender && Objects.equals(name, other.name);
+		return Objects.equals(appointmentDate, other.appointmentDate) && Objects.equals(birthDate, other.birthDate)
+				&& Objects.equals(gender, other.gender) && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", birth_date=" + birthDate +", appointment_date=" + appointmentDate + ", gender=" + gender + "]";
+		return "Employee [name=" + name + ", birthDate=" + birthDate +", appointmentDate=" + appointmentDate + ", gender=" + gender + "]";
 	}
 
 }
