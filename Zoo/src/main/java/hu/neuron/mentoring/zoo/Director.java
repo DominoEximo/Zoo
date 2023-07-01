@@ -1,10 +1,10 @@
 package hu.neuron.mentoring.zoo;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Director extends Employee {
 
-	public Director(String name, Calendar birthDate,Calendar appointmentDate, Character gender) {
+	public Director(String name, Date birthDate, Date appointmentDate, Character gender) {
 		super(name, birthDate, appointmentDate, gender);
 	}
 

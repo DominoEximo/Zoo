@@ -7,11 +7,11 @@ import java.util.Objects;
 public abstract class Employee {
 
 	private String name;
-	private Calendar birthDate;
-	private Calendar appointmentDate;
+	private Date birthDate;
+	private Date appointmentDate;
 	private Character gender;
 
-	public Employee(String name, Calendar birthDate,Calendar appointmentDate, char gender) {
+	public Employee(String name, Date birthDate,Date appointmentDate, char gender) {
 		this.name = name;
 		this.birthDate = birthDate;
 		this.appointmentDate = appointmentDate;
@@ -26,11 +26,11 @@ public abstract class Employee {
 		this.name = name;
 	}
 
-	public Calendar getBirth_date() {
+	public Date getBirth_date() {
 		return birthDate;
 	}
 
-	public void setBirth_date(Calendar birth_date) {
+	public void setBirth_date(Date birth_date) {
 		this.birthDate = birth_date;
 	}
 
