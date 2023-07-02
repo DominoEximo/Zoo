@@ -109,26 +109,27 @@ public class Main {
 		bobAreas.add(CleanedArea.TERRARIUM);
 		bobAreas.add(CleanedArea.RUNWAY);
 
-		zoo2.addEmployee(new Cleaner("Bob", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'm', bobAreas));
-		
+		zoo2.addEmployee(
+				new Cleaner("Bob", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'm', bobAreas));
+
 		ArrayList<CleanedArea> annaAreas = new ArrayList<>();
 
 		annaAreas.add(CleanedArea.CAGE);
 		annaAreas.add(CleanedArea.POOL);
 
-		zoo2.addEmployee(new Cleaner("Anna", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'f', annaAreas));
-
+		zoo2.addEmployee(new Cleaner("Anna", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'f',
+				annaAreas));
 
 		zoo2.checkRewardApplicability();
 
 		zoo2.listRewardApplicables();
-		
+
 		zoo2.listEmployees();
-		
+
 		zoo2.autoLogAllJobs(zoo2.getEployees());
-		
+
 		zoo2.listLoggedJobs();
-		
+
 	}
 
 }
