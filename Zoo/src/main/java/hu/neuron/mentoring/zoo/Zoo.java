@@ -30,7 +30,7 @@ class Zoo {
 	private ArrayList<Job> loggedJobs;
 
 	private ArrayList<Employee> rewardApplicables;
-	
+
 	private ArrayList<Sight> sights;
 
 	public Zoo() {
@@ -68,9 +68,22 @@ class Zoo {
 
 		return records;
 	}
-	
+
 	public void createSight(Sight sight) {
-		sights.add(sight);
+		
+		if (((GondoZoo) sight.getEmployee()).getSuppliedAnimals().contains(sight.getType())) {
+			sights.add(sight);
+		}else {
+			logger.info("Nincs megfelelő gondozó ilyen hely létrehozásához!");
+		}
+		
+		
+	}
+
+	public void listSights() {
+		for (Sight sight : sights) {
+			logger.info(String.format("%s", sight));
+		}
 	}
 
 	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {

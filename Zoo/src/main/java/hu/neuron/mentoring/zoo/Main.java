@@ -138,8 +138,14 @@ public class Main {
 		
 		Description<AnimalAttributes> desc4 = new Description<>(new AnimalAttributes("Litvania", true, 16, false));
 		
-		zoo2.createSight(new Sight("Tigris kifutó", 1425, null, Species.TIGER, zoo2.getEployees().get(0), desc1));
-
+		zoo2.createSight(new Sight("Tigris ketrec", 1425, null, Species.TIGER, zoo2.getEployees().get(0), desc1));
+		zoo2.createSight(new Sight("Pingvin kifutó", 9953, null, Species.PENGUIN, zoo2.getEployees().get(0), desc2));
+		zoo2.createSight(new Sight("Peacock kifutó", 3364, null, Species.PEACOCK, zoo2.getEployees().get(0), desc3));
+		zoo2.createSight(new Sight("Zsiráf kifutó", 2264, null, Species.GIRAFFE, zoo2.getEployees().get(0), desc4));
+		zoo2.createSight(new Sight("Pingvin kifutó", 2664, null, Species.PENGUIN, zoo2.getEployees().get(0), desc2));
+		zoo2.createSight(new Sight("Peacock kifutó", 2364, null, Species.PEACOCK, zoo2.getEployees().get(0), desc3));
+		
+		zoo2.listSights();
 	}
 
 }
