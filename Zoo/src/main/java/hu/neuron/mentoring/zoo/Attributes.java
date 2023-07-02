@@ -3,9 +3,9 @@ package hu.neuron.mentoring.zoo;
 import java.util.Objects;
 
 public class Attributes {
-	
+
 	private String origin;
-	
+
 	private Boolean Carnivore;
 
 	public Attributes(String origin, Boolean carnivore) {
@@ -51,7 +51,5 @@ public class Attributes {
 	public String toString() {
 		return "Attributes [origin=" + origin + ", Carnivore=" + Carnivore + "]";
 	}
-	
-	
-	
+
 }

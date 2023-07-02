@@ -3,7 +3,7 @@ package hu.neuron.mentoring.zoo;
 import java.util.Objects;
 
 public class Description<T extends Attributes> {
-	
+
 	private T description;
 
 	public Description(T description) {
@@ -40,6 +40,5 @@ public class Description<T extends Attributes> {
 	public String toString() {
 		return "Description [description=" + description + "]";
 	}
-	
-	
+
 }

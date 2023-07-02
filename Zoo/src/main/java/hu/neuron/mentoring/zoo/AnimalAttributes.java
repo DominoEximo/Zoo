@@ -2,14 +2,12 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.Objects;
 
-public class AnimalAttributes extends Attributes{
-
-	
+public class AnimalAttributes extends Attributes {
 
 	private Integer feedingTime;
-	
+
 	private Boolean isDangerous;
-	
+
 	public AnimalAttributes(String origin, Boolean carnivore, Integer feedingTime, Boolean isDangerous) {
 		super(origin, carnivore);
 		this.feedingTime = feedingTime;
@@ -56,6 +54,5 @@ public class AnimalAttributes extends Attributes{
 	public String toString() {
 		return "AnimalAttributes [feedingTime=" + feedingTime + ", isDangerous=" + isDangerous + "]";
 	}
-	
-	
+
 }
