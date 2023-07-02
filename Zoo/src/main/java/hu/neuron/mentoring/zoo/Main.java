@@ -118,16 +118,17 @@ public class Main {
 
 		zoo2.addEmployee(new Cleaner("Anna", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'f', annaAreas));
 
-		zoo2.logJob(30, "Tigris gondozás", zoo2.getEployees().get(0));
-
-		zoo2.listLoggedJobs();
 
 		zoo2.checkRewardApplicability();
 
 		zoo2.listRewardApplicables();
 		
 		zoo2.listEmployees();
-
+		
+		zoo2.autoLogAllJobs(zoo2.getEployees());
+		
+		zoo2.listLoggedJobs();
+		
 	}
 
 }
