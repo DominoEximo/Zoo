@@ -47,46 +47,45 @@ class Zoo {
 	{
 		logger.info(String.format("Az állatkert megalapulása: %s \n", LocalTime.now()));
 	}
-	
+
 	public ArrayList<Job> logJobforGondoZoo(GondoZoo caretaker) {
-		
+
 		ArrayList<Job> records = new ArrayList<>();
 		HashSet<Species> currentTypesOfAnimals = new HashSet<>();
-		
+
 		for (Animal animal : animals) {
 			currentTypesOfAnimals.add(animal.getSpecies());
 		}
-		
+
 		for (Species animal : caretaker.getSuppliedAnimals()) {
 			if (currentTypesOfAnimals.contains(animal)) {
-				records.add(new Job(2,String.format("%s gondozás", animal),caretaker));
+				records.add(new Job(2, String.format("%s gondozás", animal), caretaker));
 			}
-			
-		}
-		
-		return records;
-	}
-	
-	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {
-			
-			ArrayList<Job> records = new ArrayList<>();
-			
-			for (CleanedArea area : cleaner.getCleanedAreas()) {
-				records.add(new Job(3,String.format("%s takarÍtása", area),cleaner));
-			}
-			
-			return records;
+
 		}
 
-	
-	public void recordJob(Employee employee) {
+		return records;
+	}
+
+	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {
+
+		ArrayList<Job> records = new ArrayList<>();
+
+		for (CleanedArea area : cleaner.getCleanedAreas()) {
+			records.add(new Job(3, String.format("%s takarÍtása", area), cleaner));
+		}
+
+		return records;
+	}
+
+	public void recordJob(Employee employee){
 		Boolean isValid = false;
 
 		if (employees.contains(employee)) {
 			isValid = true;
 		}
-		
-		if(isValid) {
+
+		if (isValid) {
 			if (employee instanceof GondoZoo) {
 				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
 				loggedJobs.addAll(log);
@@ -94,17 +93,13 @@ class Zoo {
 				ArrayList<Job> log = logJobforCleaner((Cleaner) employee);
 				loggedJobs.addAll(log);
 			}
-		}else {
+		} else {
 			logger.info("Ilyen dongozó nem létezik!");
 		}
-		
-
-		
 
 	}
 
 	public void autoLogAllJobs(ArrayList<Employee> employees) {
-
 
 		for (Employee employee : employees) {
 			if (employee instanceof GondoZoo) {
