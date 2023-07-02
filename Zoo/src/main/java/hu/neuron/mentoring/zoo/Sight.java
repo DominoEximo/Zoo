@@ -3,21 +3,21 @@ package hu.neuron.mentoring.zoo;
 import java.util.List;
 import java.util.Objects;
 
-public class Sights {
-	
+public class Sight {
+
 	private String name;
-	
+
 	private Integer gps;
-	
+
 	private List<Animal> creatures;
-	
-	private String type;
-	
+
+	private Species type;
+
 	private Employee employee;
-	
+
 	private Description<?> description;
 
-	public Sights(String name, Integer gps, List<Animal> creatures, String type, Employee employee,
+	public Sight(String name, Integer gps, List<Animal> creatures, Species type, Employee employee,
 			Description<?> description) {
 		super();
 		this.name = name;
@@ -52,11 +52,11 @@ public class Sights {
 		this.creatures = creatures;
 	}
 
-	public String getType() {
+	public Species getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Species type) {
 		this.type = type;
 	}
 
@@ -89,7 +89,7 @@ public class Sights {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sights other = (Sights) obj;
+		Sight other = (Sight) obj;
 		return Objects.equals(creatures, other.creatures) && Objects.equals(description, other.description)
 				&& Objects.equals(employee, other.employee) && Objects.equals(gps, other.gps)
 				&& Objects.equals(name, other.name) && Objects.equals(type, other.type);
@@ -100,13 +100,5 @@ public class Sights {
 		return "Sights [name=" + name + ", gps=" + gps + ", creatures=" + creatures + ", type=" + type + ", employee="
 				+ employee + ", description=" + description + "]";
 	}
-
-	
-
-	
-
-	
-	
-	
 
 }

@@ -129,6 +129,16 @@ public class Main {
 		zoo2.autoLogAllJobs(zoo2.getEployees());
 
 		zoo2.listLoggedJobs();
+		
+		Description<AnimalAttributes> desc1 = new Description<>(new AnimalAttributes("Russia", true, 12, true));
+		
+		Description<AnimalAttributes> desc2 = new Description<>(new AnimalAttributes("Africa", false, 10, false));
+		
+		Description<AnimalAttributes> desc3 = new Description<>(new AnimalAttributes("Kongo", false, 7, true));
+		
+		Description<AnimalAttributes> desc4 = new Description<>(new AnimalAttributes("Litvania", true, 16, false));
+		
+		zoo2.createSight(new Sight("Tigris kifutó", 1425, null, Species.TIGER, zoo2.getEployees().get(0), desc1));
 
 	}
 

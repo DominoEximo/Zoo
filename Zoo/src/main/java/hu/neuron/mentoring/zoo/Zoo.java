@@ -31,12 +31,15 @@ class Zoo {
 	private ArrayList<Job> loggedJobs;
 
 	private ArrayList<Employee> rewardApplicables;
+	
+	private ArrayList<Sight> sights;
 
 	public Zoo() {
 		employees = new ArrayList<>();
 		animals = new ArrayList<>();
 		loggedJobs = new ArrayList<>();
 		rewardApplicables = new ArrayList<>();
+		sights = new ArrayList<>();
 		counter++;
 	}
 
@@ -66,6 +69,10 @@ class Zoo {
 
 		return records;
 	}
+	
+	public void createSight(Sight sight) {
+		sights.add(sight);
+	}
 
 	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {
 
@@ -78,7 +85,7 @@ class Zoo {
 		return records;
 	}
 
-	public void recordJob(Employee employee){
+	public void recordJob(Employee employee) {
 		Boolean isValid = false;
 
 		if (employees.contains(employee)) {

@@ -81,7 +81,5 @@ public class VegetationAttributes extends Attributes {
 		return "VegetationAttributes [soil=" + soil + ", blooms=" + blooms + ", timeOfBlooming=" + timeOfBlooming
 				+ ", waterInterval=" + waterInterval + "]";
 	}
-	
-	
 
 }
