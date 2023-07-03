@@ -148,6 +148,13 @@ public class Main {
 		zoo2.createSight(new Sight("Peacock kifutó", 2364, null, Species.PEACOCK, zoo2.getEployees().get(0), desc3));
 		
 		zoo2.listSights();
+		
+		zoo2.addAnimal(new Animal(Species.PENGUIN, "Pengu", Calendar.getInstance().getWeekYear(), 'f'));
+		zoo2.addAnimal(new Animal(Species.PENGUIN, "Bengu", Calendar.getInstance().getWeekYear(), 'f'));
+		zoo2.addAnimal(new Animal(Species.PENGUIN, "Lengu", Calendar.getInstance().getWeekYear(), 'f'));
+		zoo2.addAnimal(new Animal(Species.PENGUIN, "Aengu", Calendar.getInstance().getWeekYear(), 'f'));
+		
+		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
 	}
 
 }
