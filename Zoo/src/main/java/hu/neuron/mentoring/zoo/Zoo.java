@@ -70,14 +70,13 @@ class Zoo {
 	}
 
 	public void createSight(Sight sight) {
-		
+
 		if (((GondoZoo) sight.getEmployee()).getSuppliedAnimals().contains(sight.getType())) {
 			sights.add(sight);
-		}else {
+		} else {
 			logger.info("Nincs megfelelő gondozó ilyen hely létrehozásához!");
 		}
-		
-		
+
 	}
 
 	public void listSights() {
@@ -169,6 +168,14 @@ class Zoo {
 			}
 		}
 
+	}
+	
+	public void listAnimalsWithSpecies(Species species){
+		for (Animal animal : animals) {
+			if (animal.getSpecies().equals(species)) {
+				logger.info(String.format("%s", animal));
+			}
+		}
 	}
 
 	public static void listZoos() {
