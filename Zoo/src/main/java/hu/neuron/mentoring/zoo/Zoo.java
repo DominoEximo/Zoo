@@ -166,8 +166,8 @@ class Zoo {
 		}
 
 	}
-	
-	public void listAnimalsWithSpecies(Species species){
+
+	public void listAnimalsWithSpecies(Species species) {
 		for (Animal animal : animals) {
 			if (animal.getSpecies().equals(species)) {
 				logger.info(String.format("%s", animal));
@@ -190,7 +190,7 @@ class Zoo {
 		}
 	}
 
-	public void addAnimal(Animal animal) {
+	public void addAnimal(Animal animal) throws GondoZooNotAvailableException {
 		Boolean canBuy = false;
 		if (Boolean.FALSE.equals(canBuy)) {
 			for (Employee employee : employees) {
@@ -208,6 +208,8 @@ class Zoo {
 			logger.info(String.format("Az állatkert befogadta a(z) %s nevű állatot! \n", animal.getNickname()));
 		} else {
 			logger.info(String.format("A %s állatot az állatkert nem tudja fogadni. \n", animal.getSpecies()));
+			throw new GondoZooNotAvailableException();
+			
 		}
 	}
 
@@ -220,7 +222,7 @@ class Zoo {
 		this.employees.add(employee);
 	}
 
-	public void fireGondoZoo(GondoZoo employee) {
+	public void fireGondoZoo(GondoZoo employee) throws ZooEmployeeException {
 
 		Boolean canFire = true;
 
@@ -253,6 +255,8 @@ class Zoo {
 			logger.info(String.format("%s nevű dolgozó eltávozott! \n", employee.getName()));
 		} else {
 			logger.info(String.format("Az állatkertnek szüksége van %s gondozóra! \n", problematicAnimal));
+			throw new ZooEmployeeException();
+
 		}
 
 	}
@@ -264,7 +268,7 @@ class Zoo {
 			logger.info(String.format("Az állatkert %s igazgatója eltávozott! \n", director.getName()));
 			this.director = null;
 			throw new ZooEmployeeException("Az állatkertnek nincs igazgatója!");
-			
+
 		}
 
 	}

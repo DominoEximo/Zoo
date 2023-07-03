@@ -1,7 +1,6 @@
 package hu.neuron.mentoring.zoo;
 
-public class ZooEmployeeException extends ZooException{
-
+public class ZooEmployeeException extends ZooException {
 
 	private static final long serialVersionUID = 6621702353288916889L;
 
@@ -25,7 +24,5 @@ public class ZooEmployeeException extends ZooException{
 	public ZooEmployeeException(Throwable cause) {
 		super(cause);
 	}
-	
-	
 
 }
