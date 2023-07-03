@@ -189,7 +189,7 @@ class Zoo {
 
 	public void addAnimal(Animal animal) {
 		Boolean canBuy = false;
-		if (Boolean.TRUE.equals(canBuy)) {
+		if (Boolean.FALSE.equals(canBuy)) {
 			for (Employee employee : employees) {
 				if (employee instanceof GondoZoo) {
 					if (((GondoZoo) employee).getSuppliedAnimals().contains(animal.getSpecies())) {

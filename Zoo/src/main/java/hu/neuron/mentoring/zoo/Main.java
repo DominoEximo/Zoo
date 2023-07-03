@@ -93,6 +93,8 @@ public class Main {
 		zoo2.fireDirector();
 
 		zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(0));
+		
+		System.out.println(zoo2.getEployees());
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
 
