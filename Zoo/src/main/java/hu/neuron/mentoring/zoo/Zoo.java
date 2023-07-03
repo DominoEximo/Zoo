@@ -2,16 +2,13 @@ package hu.neuron.mentoring.zoo;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
@@ -260,12 +257,14 @@ class Zoo {
 
 	}
 
-	public void fireDirector() {
+	public void fireDirector() throws ZooEmployeeException {
 		if (this.director == null) {
 			logger.info(String.format("Az állatkertnek nincs jelenleg igazgatója! \n"));
 		} else {
 			logger.info(String.format("Az állatkert %s igazgatója eltávozott! \n", director.getName()));
 			this.director = null;
+			throw new ZooEmployeeException("Az állatkertnek nincs igazgatója!");
+			
 		}
 
 	}

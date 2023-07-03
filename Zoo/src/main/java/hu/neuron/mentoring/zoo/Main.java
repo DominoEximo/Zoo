@@ -2,10 +2,16 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Logger;
+
+import com.sun.tools.sjavac.Log.Level;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		Logger logger = Logger.getLogger(Zoo.class.getName());
+		
 		Zoo zoo1 = new Zoo();
 
 		Calendar adamBirthDate = Calendar.getInstance();
@@ -48,7 +54,11 @@ public class Main {
 
 		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(), evaAppointmentDate.getTime(), 'f'));
 
-		zoo1.fireDirector();
+		try {
+			zoo1.fireDirector();
+		} catch (ZooEmployeeException e) {
+			logger.warning("Az állatkertnek nincs igazgatója!");
+		}
 
 		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(), evaAppointmentDate.getTime(), 'f'));
 		ArrayList<Species> earlAnimals = new ArrayList<>();
@@ -76,7 +86,7 @@ public class Main {
 
 		Zoo zoo2 = new Zoo();
 
-		zoo2.listZoos();
+		Zoo.listZoos();
 
 		Zoo.Moving move1 = zoo1.new Moving();
 
@@ -90,11 +100,14 @@ public class Main {
 
 		zoo2.listEmployees();
 
-		zoo2.fireDirector();
+		try {
+			zoo2.fireDirector();
+		} catch (ZooEmployeeException e) {
+			logger.warning("Az állatkertnek nincs igazgatója!");
+		}
 
 		zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(0));
 		
-		System.out.println(zoo2.getEployees());
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
 
