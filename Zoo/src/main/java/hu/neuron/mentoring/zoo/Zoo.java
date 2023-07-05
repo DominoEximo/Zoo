@@ -118,9 +118,9 @@ class Zoo {
 
 	}
 
-	public void autoLogAllJobs(ArrayList<Employee> employees) {
+	public void autoLogAllJobs(List<Employee> list) {
 
-		for (Employee employee : employees) {
+		for (Employee employee : list) {
 			if (employee instanceof GondoZoo) {
 				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
 				loggedJobs.addAll(log);
