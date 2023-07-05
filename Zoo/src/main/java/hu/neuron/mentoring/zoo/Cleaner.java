@@ -2,22 +2,23 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Cleaner extends Employee {
 
-	private ArrayList<CleanedArea> cleanedAreas;
+	private List<CleanedArea> cleanedAreas;
 
-	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<CleanedArea> cleanedAreas) {
+	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender, List<CleanedArea> cleanedAreas) {
 		super(name, birthDate,appointmentDate, gender);
 		this.cleanedAreas = cleanedAreas;
 	}
 
-	public ArrayList<CleanedArea> getCleanedAreas() {
+	public List<CleanedArea> getCleanedAreas() {
 		return cleanedAreas;
 	}
 
-	public void setCleanedAreas(ArrayList<CleanedArea> cleanedAreas) {
+	public void setCleanedAreas(List<CleanedArea> cleanedAreas) {
 		this.cleanedAreas = cleanedAreas;
 	}
 

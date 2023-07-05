@@ -28,11 +28,11 @@ class Zoo {
 
 	private List<Animal> animals;
 
-	private ArrayList<Job> loggedJobs;
+	private List<Job> loggedJobs;
 
-	private ArrayList<Employee> rewardApplicables;
+	private List<Employee> rewardApplicables;
 
-	private ArrayList<Sight> sights;
+	private List<Sight> sights;
 
 	public Zoo() {
 		employees = new ArrayList<>();
