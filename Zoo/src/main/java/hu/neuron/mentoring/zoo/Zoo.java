@@ -28,9 +28,9 @@ class Zoo {
 
 	private List<Animal> animals;
 
-	private ArrayList<Job> loggedJobs;
+	private List<Job> loggedJobs;
 
-	private ArrayList<Employee> rewardApplicables;
+	private List<Employee> rewardApplicables;
 
 	public Zoo() {
 		employees = new ArrayList<>();
@@ -103,10 +103,10 @@ class Zoo {
 
 	}
 
-	public void autoLogAllJobs(ArrayList<Employee> employees) {
+	public void autoLogAllJobs(List<Employee> list) {
 
 
-		for (Employee employee : employees) {
+		for (Employee employee : list) {
 			if (employee instanceof GondoZoo) {
 				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
 				loggedJobs.addAll(log);
