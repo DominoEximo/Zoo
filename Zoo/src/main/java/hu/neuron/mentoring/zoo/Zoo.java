@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -19,9 +20,9 @@ class Zoo {
 
 	private Director director;
 
-	private ArrayList<Employee> employees;
+	private List<Employee> employees;
 
-	private ArrayList<Animal> animals;
+	private List<Animal> animals;
 
 	public Zoo() {
 		employees = new ArrayList<>();
@@ -164,19 +165,19 @@ class Zoo {
 
 	}
 
-	public ArrayList<Employee> getEployees() {
+	public List<Employee> getEployees() {
 		return employees;
 	}
 
-	public void setEmployees(ArrayList<Employee> eployees) {
+	public void setEmployees(List<Employee> eployees) {
 		this.employees = eployees;
 	}
 
-	public ArrayList<Animal> getAnimals() {
+	public List<Animal> getAnimals() {
 		return animals;
 	}
 
-	public void setAnimals(ArrayList<Animal> animals) {
+	public void setAnimals(List<Animal> animals) {
 		this.animals = animals;
 	}
 
