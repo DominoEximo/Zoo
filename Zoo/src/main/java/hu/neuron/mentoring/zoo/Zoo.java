@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -20,15 +21,15 @@ class Zoo {
 
 	private Director director;
 
-	private ArrayList<Employee> employees;
+	private List<Employee> employees;
 
-	private ArrayList<Animal> animals;
+	private List<Animal> animals;
 
-	private ArrayList<Job> loggedJobs;
+	private List<Job> loggedJobs;
 
-	private ArrayList<Employee> rewardApplicables;
+	private List<Employee> rewardApplicables;
 
-	private ArrayList<Sight> sights;
+	private List<Sight> sights;
 
 	public Zoo() {
 		employees = new ArrayList<>();
@@ -114,9 +115,9 @@ class Zoo {
 
 	}
 
-	public void autoLogAllJobs(ArrayList<Employee> employees) {
+	public void autoLogAllJobs(List<Employee> list) {
 
-		for (Employee employee : employees) {
+		for (Employee employee : list) {
 			if (employee instanceof GondoZoo) {
 				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
 				loggedJobs.addAll(log);
@@ -307,19 +308,19 @@ class Zoo {
 
 	}
 
-	public ArrayList<Employee> getEployees() {
+	public List<Employee> getEployees() {
 		return employees;
 	}
 
-	public void setEmployees(ArrayList<Employee> eployees) {
+	public void setEmployees(List<Employee> eployees) {
 		this.employees = eployees;
 	}
 
-	public ArrayList<Animal> getAnimals() {
+	public List<Animal> getAnimals() {
 		return animals;
 	}
 
-	public void setAnimals(ArrayList<Animal> animals) {
+	public void setAnimals(List<Animal> animals) {
 		this.animals = animals;
 	}
 
