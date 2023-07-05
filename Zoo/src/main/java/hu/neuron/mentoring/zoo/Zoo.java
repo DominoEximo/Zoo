@@ -48,36 +48,6 @@ class Zoo {
 		logger.info(String.format("Az állatkert megalapulása: %s \n", LocalTime.now()));
 	}
 
-	public ArrayList<Job> logJobforGondoZoo(GondoZoo caretaker) {
-
-		ArrayList<Job> records = new ArrayList<>();
-		HashSet<Species> currentTypesOfAnimals = new HashSet<>();
-
-		for (Animal animal : animals) {
-			currentTypesOfAnimals.add(animal.getSpecies());
-		}
-
-		for (Species animal : caretaker.getSuppliedAnimals()) {
-			if (currentTypesOfAnimals.contains(animal)) {
-				records.add(new Job(2, String.format("%s gondozás", animal), caretaker));
-			}
-
-		}
-
-		return records;
-	}
-
-	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {
-
-		ArrayList<Job> records = new ArrayList<>();
-
-		for (CleanedArea area : cleaner.getCleanedAreas()) {
-			records.add(new Job(3, String.format("%s takarÍtása", area), cleaner));
-		}
-
-		return records;
-	}
-
 	public void recordJob(Employee employee) {
 		Boolean isValid = false;
 
