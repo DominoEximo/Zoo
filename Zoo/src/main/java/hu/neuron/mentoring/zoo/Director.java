@@ -1,6 +1,7 @@
 package hu.neuron.mentoring.zoo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Director extends Employee {
 
@@ -27,6 +28,11 @@ public class Director extends Employee {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	@Override
+	public List<Job> logJob(Zoo zoo) {
+		return null;
 	}
 
 }
