@@ -9,8 +9,9 @@ public class Cleaner extends Employee {
 
 	private ArrayList<CleanedArea> cleanedAreas;
 
-	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<CleanedArea> cleanedAreas) {
-		super(name, birthDate,appointmentDate, gender);
+	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender,
+			ArrayList<CleanedArea> cleanedAreas) {
+		super(name, birthDate, appointmentDate, gender);
 		this.cleanedAreas = cleanedAreas;
 	}
 
@@ -50,14 +51,13 @@ public class Cleaner extends Employee {
 	@Override
 	public List<Job> logJob(Zoo zoo) {
 		ArrayList<Job> records = new ArrayList<>();
-		
+
 		for (CleanedArea area : this.getCleanedAreas()) {
-			records.add(new Job(3,String.format("%s takarÍtása", area),this));
+			records.add(new Job(3, String.format("%s takarÍtása", area), this));
 		}
-		
+
 		return records;
-		
+
 	}
-	
-	
+
 }

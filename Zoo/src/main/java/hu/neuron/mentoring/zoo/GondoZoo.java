@@ -1,4 +1,5 @@
 package hu.neuron.mentoring.zoo;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,7 +10,8 @@ public class GondoZoo extends Employee {
 
 	private ArrayList<Species> suppliedAnimals;
 
-	public GondoZoo(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<Species> suppliedAnimals) {
+	public GondoZoo(String name, Date birthDate, Date appointmentDate, Character gender,
+			ArrayList<Species> suppliedAnimals) {
 		super(name, birthDate, appointmentDate, gender);
 		this.suppliedAnimals = suppliedAnimals;
 	}
@@ -55,18 +57,18 @@ public class GondoZoo extends Employee {
 	public List<Job> logJob(Zoo zoo) {
 		ArrayList<Job> records = new ArrayList<>();
 		HashSet<Species> currentTypesOfAnimals = new HashSet<>();
-		
+
 		for (Animal animal : zoo.getAnimals()) {
 			currentTypesOfAnimals.add(animal.getSpecies());
 		}
-		
+
 		for (Species animal : this.getSuppliedAnimals()) {
 			if (currentTypesOfAnimals.contains(animal)) {
-				records.add(new Job(2,String.format("%s gondozás", animal),this));
+				records.add(new Job(2, String.format("%s gondozás", animal), this));
 			}
-			
+
 		}
-		
+
 		return records;
 	}
 

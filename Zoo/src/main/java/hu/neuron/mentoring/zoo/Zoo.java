@@ -32,11 +32,16 @@ class Zoo {
 
 	private List<Employee> rewardApplicables;
 
+	private List<Sight> sights;
+
 	public Zoo() {
 		employees = new ArrayList<>();
 		animals = new ArrayList<>();
 		loggedJobs = new ArrayList<>();
 		rewardApplicables = new ArrayList<>();
+
+		sights = new ArrayList<>();
+
 		counter++;
 	}
 
@@ -110,6 +115,60 @@ class Zoo {
 				logger.info(String.format("Jutalomban részesül: %s", rewardable.getName()));
 			}
 		}
+	}
+
+	public ArrayList<Job> logJobforGondoZoo(GondoZoo caretaker) {
+
+		ArrayList<Job> records = new ArrayList<>();
+		HashSet<Species> currentTypesOfAnimals = new HashSet<>();
+
+		for (Animal animal : animals) {
+			currentTypesOfAnimals.add(animal.getSpecies());
+		}
+
+		for (Species animal : caretaker.getSuppliedAnimals()) {
+			if (currentTypesOfAnimals.contains(animal)) {
+				records.add(new Job(2, String.format("%s gondozás", animal), caretaker));
+			}
+
+		}
+
+		return records;
+	}
+
+	public void createSight(Sight sight) {
+
+		if (((GondoZoo) sight.getEmployee()).getSuppliedAnimals().contains(sight.getType())) {
+			sights.add(sight);
+		} else {
+			logger.info("Nincs megfelelő gondozó ilyen hely létrehozásához!");
+		}
+
+	}
+
+	public void listSights() {
+		for (Sight sight : sights) {
+			logger.info(String.format("%s", sight));
+		}
+	}
+
+	public ArrayList<Job> logJobforCleaner(Cleaner cleaner) {
+
+		ArrayList<Job> records = new ArrayList<>();
+
+		for (CleanedArea area : cleaner.getCleanedAreas()) {
+			records.add(new Job(3, String.format("%s takarÍtása", area), cleaner));
+		}
+
+		return records;
+	}
+
+	public void listAnimalsWithSpecies(Species species) {
+		for (Animal animal : animals) {
+			if (animal.getSpecies().equals(species)) {
+				logger.info(String.format("%s", animal));
+			}
+		}
 
 	}
 
@@ -130,7 +189,7 @@ class Zoo {
 
 	public void addAnimal(Animal animal) {
 		Boolean canBuy = false;
-		if (employees != null) {
+		if (Boolean.FALSE.equals(canBuy)) {
 			for (Employee employee : employees) {
 				if (employee instanceof GondoZoo) {
 					if (((GondoZoo) employee).getSuppliedAnimals().contains(animal.getSpecies())) {
