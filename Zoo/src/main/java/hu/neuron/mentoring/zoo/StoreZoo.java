@@ -28,12 +28,11 @@ public class StoreZoo {
 				ObjectInputStream oi = new ObjectInputStream(fi)) {
 
 			Zoo tempZoo = (Zoo) oi.readObject();
-			
+
 			newZoo.setAnimals(tempZoo.getAnimals());
 			newZoo.setDirector(tempZoo.getDirector());
 			newZoo.setEmployees(tempZoo.getEployees());
-			
-		
+
 		} catch (ClassNotFoundException c) {
 			logger.warning("Nincs lementett állatkert!");
 		} catch (FileNotFoundException e) {

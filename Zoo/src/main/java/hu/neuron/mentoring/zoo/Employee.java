@@ -5,14 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Employee implements Serializable{
+public abstract class Employee implements Serializable {
 
 	private String name;
 	private Date birthDate;
 	private Date appointmentDate;
 	private Character gender;
 
-	public Employee(String name, Date birthDate,Date appointmentDate, char gender) {
+	public Employee(String name, Date birthDate, Date appointmentDate, char gender) {
 		this.name = name;
 		this.birthDate = birthDate;
 		this.appointmentDate = appointmentDate;
@@ -35,8 +35,6 @@ public abstract class Employee implements Serializable{
 		this.gender = gender;
 	}
 
-	
-
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -52,8 +50,6 @@ public abstract class Employee implements Serializable{
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -75,7 +71,8 @@ public abstract class Employee implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", birthDate=" + birthDate +", appointmentDate=" + appointmentDate + ", gender=" + gender + "]";
+		return "Employee [name=" + name + ", birthDate=" + birthDate + ", appointmentDate=" + appointmentDate
+				+ ", gender=" + gender + "]";
 	}
 
 }
