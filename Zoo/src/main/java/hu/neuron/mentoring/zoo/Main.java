@@ -1,7 +1,11 @@
 package hu.neuron.mentoring.zoo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import com.sun.tools.sjavac.Log.Level;
@@ -11,6 +15,31 @@ public class Main {
 	public static void main(String[] args) {
 
 		Logger logger = Logger.getLogger(Zoo.class.getName());
+
+		Properties prop = new Properties();
+
+		try (FileOutputStream output = new FileOutputStream("src/main/resources/config.properties")) {
+
+			prop.setProperty("GondoZooExceptionMessage",
+					"Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
+			prop.setProperty("DirectorMissing", "Az állatkertnek nincs igazgatója!");
+			prop.setProperty("GondoZooRequired", "Az állatkertnek szüksége van erre a dolgozóra!");
+
+			prop.store(output, null);
+
+			System.out.println(prop);
+
+		} catch (IOException io) {
+			logger.warning("IO exception!");
+		}
+
+		try (FileInputStream input = new FileInputStream("src/main/resources/config.properties")) {
+
+			prop.load(input);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 
 		Zoo zoo1 = new Zoo();
 
@@ -28,7 +57,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning("Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
 		}
 
 		ArrayList<Species> carlAnimals = new ArrayList<>();
@@ -48,7 +77,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning("Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
 		}
 
 		Calendar evaBirthDate = Calendar.getInstance();
@@ -65,7 +94,7 @@ public class Main {
 		try {
 			zoo1.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning("Az állatkertnek nincs igazgatója!");
+			logger.warning(String.format("%s", prop.getProperty("DirectorMissing")));
 		}
 
 		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(), evaAppointmentDate.getTime(), 'f'));
@@ -89,7 +118,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning("Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
 		}
 
 		zoo1.listAnimals();
@@ -115,13 +144,13 @@ public class Main {
 		try {
 			zoo2.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning("Az állatkertnek nincs igazgatója!");
+			logger.warning(String.format("%s", prop.getProperty("DirectorMissing")));
 		}
 
 		try {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(0));
 		} catch (ZooEmployeeException e) {
-			logger.warning("Az állatkertnek szüksége van erre a dolgozóra!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooRequired")));
 		}
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
@@ -132,7 +161,7 @@ public class Main {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(1));
 		} catch (ZooEmployeeException e) {
 
-			logger.warning("Az állatkertnek szüksége van erre a dolgozóra!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooRequired")));
 		}
 
 		zoo2.listAnimals();
@@ -188,7 +217,7 @@ public class Main {
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Lengu", Calendar.getInstance().getWeekYear(), 'f'));
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Aengu", Calendar.getInstance().getWeekYear(), 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning("Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
+			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
 		}
 		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
 	}
