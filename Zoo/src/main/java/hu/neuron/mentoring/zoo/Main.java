@@ -57,7 +57,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
+			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
 		}
 
 		ArrayList<Species> carlAnimals = new ArrayList<>();
@@ -77,7 +77,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
+			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
 		}
 
 		Calendar evaBirthDate = Calendar.getInstance();
@@ -94,7 +94,7 @@ public class Main {
 		try {
 			zoo1.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning(String.format("%s", prop.getProperty("DirectorMissing")));
+			logger.warning(prop.getProperty("DirectorMissing"));
 		}
 
 		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(), evaAppointmentDate.getTime(), 'f'));
@@ -118,7 +118,7 @@ public class Main {
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
+			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
 		}
 
 		zoo1.listAnimals();
@@ -128,6 +128,10 @@ public class Main {
 		Zoo zoo2 = new Zoo();
 
 		Zoo.listZoos();
+		
+		StoreZoo storage = new StoreZoo();
+		
+		storage.saveZoo(zoo1);
 
 		Zoo.Moving move1 = zoo1.new Moving();
 
@@ -144,13 +148,13 @@ public class Main {
 		try {
 			zoo2.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning(String.format("%s", prop.getProperty("DirectorMissing")));
+			logger.warning(prop.getProperty("DirectorMissing"));
 		}
 
 		try {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(0));
 		} catch (ZooEmployeeException e) {
-			logger.warning(String.format("%s", prop.getProperty("GondoZooRequired")));
+			logger.warning(prop.getProperty("GondoZooRequired"));
 		}
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
@@ -161,7 +165,7 @@ public class Main {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(1));
 		} catch (ZooEmployeeException e) {
 
-			logger.warning(String.format("%s", prop.getProperty("GondoZooRequired")));
+			logger.warning(prop.getProperty("GondoZooRequired"));
 		}
 
 		zoo2.listAnimals();
@@ -217,9 +221,16 @@ public class Main {
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Lengu", Calendar.getInstance().getWeekYear(), 'f'));
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Aengu", Calendar.getInstance().getWeekYear(), 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(String.format("%s", prop.getProperty("GondoZooExceptionMessage")));
+			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
 		}
 		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
+		
+		Zoo foreignZoo = new Zoo();
+		
+		storage.loadZoo(foreignZoo);
+		
+		foreignZoo.getEployees();
+		
 	}
 
 }

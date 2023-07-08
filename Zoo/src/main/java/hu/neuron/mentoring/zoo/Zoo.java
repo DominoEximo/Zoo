@@ -1,5 +1,6 @@
 package hu.neuron.mentoring.zoo;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,7 +14,9 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
-class Zoo {
+class Zoo implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(Zoo.class.getName());
 
@@ -45,7 +48,7 @@ class Zoo {
 	}
 
 	{
-		logger.info(String.format("Az állatkert megalapulása: %s \n", LocalTime.now()));
+		logger.info("Az állatkert megalapulása: " + LocalTime.now() + "\n");
 	}
 
 	public ArrayList<Job> logJobforGondoZoo(GondoZoo caretaker) {
@@ -183,8 +186,7 @@ class Zoo {
 	public void listEmployees() {
 		try {
 			for (Employee employee : employees) {
-				logger.info(
-						String.format("%s %s %s", employee.getName(), employee.getBirthDate(), employee.getGender()));
+				logger.info(employee.getName() + employee.getBirthDate() + employee.getGender());
 			}
 		} catch (NullPointerException e) {
 			logger.info("Az állatkertnek nincsenek dolgozói!");
@@ -206,16 +208,16 @@ class Zoo {
 
 		if (Boolean.TRUE.equals(canBuy)) {
 			this.animals.add(animal);
-			logger.info(String.format("Az állatkert befogadta a(z) %s nevű állatot! \n", animal.getNickname()));
+			logger.info("Az állatkert befogadta a(z)" + animal.getNickname() + "nevű állatot! \n");
 		} else {
-			logger.info(String.format("A %s állatot az állatkert nem tudja fogadni. \n", animal.getSpecies()));
+			logger.info("A(z)" + animal.getSpecies() + "állatot az állatkert nem tudja fogadni. \n");
 			throw new GondoZooNotAvailableException();
-			
+
 		}
 	}
 
 	public void sellAnimal(Animal animal) {
-		logger.info(String.format("Az %s nevú állatot eladták.", animal.getNickname()));
+		logger.info("Az" + animal.getNickname() + "nevú állatot eladták." );
 		this.animals.remove(animal);
 	}
 
@@ -253,9 +255,9 @@ class Zoo {
 
 		if (Boolean.TRUE.equals(canFire)) {
 			this.employees.remove(employee);
-			logger.info(String.format("%s nevű dolgozó eltávozott! \n", employee.getName()));
+			logger.info(employee.getName() + "nevű dolgozó eltávozott! \n");
 		} else {
-			logger.info(String.format("Az állatkertnek szüksége van %s gondozóra! \n", problematicAnimal));
+			logger.info("Az állatkertnek szüksége van" + problematicAnimal + "gondozóra! \n" );
 			throw new ZooEmployeeException();
 
 		}
@@ -266,7 +268,7 @@ class Zoo {
 		if (this.director == null) {
 			logger.info(String.format("Az állatkertnek nincs jelenleg igazgatója! \n"));
 		} else {
-			logger.info(String.format("Az állatkert %s igazgatója eltávozott! \n", director.getName()));
+			logger.info("Az állatkert" + director.getName() + "igazgatója eltávozott! \n" );
 			this.director = null;
 			throw new ZooEmployeeException("Az állatkertnek nincs igazgatója!");
 
@@ -275,7 +277,7 @@ class Zoo {
 	}
 
 	public void animalCount() {
-		logger.info(String.format("Az állatkertnek %d lakója van jelenleg! \n", animals.size()));
+		logger.info("Az állatkertnek" + animals.size() + "lakója van jelenleg! \n" );
 	}
 
 	public void listAnimals() {
@@ -301,7 +303,7 @@ class Zoo {
 	public void setDirector(Director director) {
 		if (this.director == null) {
 			this.director = director;
-			logger.info(String.format("Az állatkert igazgatója %s lett! \n", director.getName()));
+			logger.info("Az állatkert igazgatója" + director.getName() + "lett! \n" );
 		} else {
 			logger.info(String.format("Az állatkertnek már van igazgatója. \n"));
 		}
