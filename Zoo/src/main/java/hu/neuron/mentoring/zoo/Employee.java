@@ -1,10 +1,11 @@
 package hu.neuron.mentoring.zoo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Employee {
+public abstract class Employee implements Serializable{
 
 	private String name;
 	private Date birthDate;

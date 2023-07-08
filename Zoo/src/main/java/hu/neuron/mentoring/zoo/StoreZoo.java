@@ -1,6 +1,7 @@
 package hu.neuron.mentoring.zoo;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -28,12 +29,17 @@ public class StoreZoo {
 
 			Zoo tempZoo = (Zoo) oi.readObject();
 			
-			newZoo = tempZoo;
+			newZoo.setAnimals(tempZoo.getAnimals());
+			newZoo.setDirector(tempZoo.getDirector());
+			newZoo.setEmployees(tempZoo.getEployees());
 			
-		} catch (IOException io) {
-			logger.warning("IO Exception!");
+		
 		} catch (ClassNotFoundException c) {
 			logger.warning("Nincs lementett állatkert!");
+		} catch (FileNotFoundException e) {
+			logger.info("File not found!");
+		} catch (IOException e) {
+			logger.info("IOException!");
 		}
 	}
 

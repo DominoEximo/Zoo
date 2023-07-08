@@ -1,6 +1,7 @@
 package hu.neuron.mentoring.zoo;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -229,7 +230,7 @@ public class Main {
 
 		storage.loadZoo(foreignZoo);
 
-		foreignZoo.getEployees();
+		logger.info(String.format("%s", foreignZoo.getEployees()));
 
 	}
 

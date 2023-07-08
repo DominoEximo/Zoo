@@ -1,7 +1,8 @@
 package hu.neuron.mentoring.zoo;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Animal {
+public class Animal implements Serializable{
 
 	private Species species;
 	private String nickname;
