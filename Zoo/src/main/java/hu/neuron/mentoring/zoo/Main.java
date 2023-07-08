@@ -128,9 +128,9 @@ public class Main {
 		Zoo zoo2 = new Zoo();
 
 		Zoo.listZoos();
-		
+
 		StoreZoo storage = new StoreZoo();
-		
+
 		storage.saveZoo(zoo1);
 
 		Zoo.Moving move1 = zoo1.new Moving();
@@ -224,13 +224,13 @@ public class Main {
 			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
 		}
 		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
-		
+
 		Zoo foreignZoo = new Zoo();
-		
+
 		storage.loadZoo(foreignZoo);
-		
+
 		foreignZoo.getEployees();
-		
+
 	}
 
 }

@@ -165,7 +165,7 @@ class Zoo implements Serializable {
 			logger.info("Jelenleg senki sem részesül jutalomban.");
 		} else {
 			for (Employee rewardable : this.rewardApplicables) {
-				logger.info(String.format("Jutalomban részesül: %s", rewardable.getName()));
+				logger.info("Jutalomban részesül: " + rewardable.getName());
 			}
 		}
 
@@ -180,7 +180,7 @@ class Zoo implements Serializable {
 	}
 
 	public static void listZoos() {
-		logger.info(String.format("Az országnak %d állatkertje van jelenleg. \n", counter));
+		logger.info("Az országnak " + counter + " állatkertje van jelenleg. \n");
 	}
 
 	public void listEmployees() {
@@ -208,7 +208,7 @@ class Zoo implements Serializable {
 
 		if (Boolean.TRUE.equals(canBuy)) {
 			this.animals.add(animal);
-			logger.info("Az állatkert befogadta a(z)" + animal.getNickname() + "nevű állatot! \n");
+			logger.info("Az állatkert befogadta a(z) " + animal.getNickname() + " nevű állatot! \n");
 		} else {
 			logger.info("A(z)" + animal.getSpecies() + "állatot az állatkert nem tudja fogadni. \n");
 			throw new GondoZooNotAvailableException();
@@ -217,7 +217,7 @@ class Zoo implements Serializable {
 	}
 
 	public void sellAnimal(Animal animal) {
-		logger.info("Az" + animal.getNickname() + "nevú állatot eladták." );
+		logger.info("Az " + animal.getNickname() + " nevú állatot eladták.");
 		this.animals.remove(animal);
 	}
 
@@ -257,7 +257,7 @@ class Zoo implements Serializable {
 			this.employees.remove(employee);
 			logger.info(employee.getName() + "nevű dolgozó eltávozott! \n");
 		} else {
-			logger.info("Az állatkertnek szüksége van" + problematicAnimal + "gondozóra! \n" );
+			logger.info("Az állatkertnek szüksége van " + problematicAnimal + " gondozóra! \n");
 			throw new ZooEmployeeException();
 
 		}
@@ -268,7 +268,7 @@ class Zoo implements Serializable {
 		if (this.director == null) {
 			logger.info(String.format("Az állatkertnek nincs jelenleg igazgatója! \n"));
 		} else {
-			logger.info("Az állatkert" + director.getName() + "igazgatója eltávozott! \n" );
+			logger.info("Az állatkert " + director.getName() + " igazgatója eltávozott! \n");
 			this.director = null;
 			throw new ZooEmployeeException("Az állatkertnek nincs igazgatója!");
 
@@ -277,7 +277,7 @@ class Zoo implements Serializable {
 	}
 
 	public void animalCount() {
-		logger.info("Az állatkertnek" + animals.size() + "lakója van jelenleg! \n" );
+		logger.info("Az állatkertnek " + animals.size() + " lakója van jelenleg! \n");
 	}
 
 	public void listAnimals() {
@@ -303,7 +303,7 @@ class Zoo implements Serializable {
 	public void setDirector(Director director) {
 		if (this.director == null) {
 			this.director = director;
-			logger.info("Az állatkert igazgatója" + director.getName() + "lett! \n" );
+			logger.info("Az állatkert igazgatója " + director.getName() + " lett! \n");
 		} else {
 			logger.info(String.format("Az állatkertnek már van igazgatója. \n"));
 		}
