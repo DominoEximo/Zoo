@@ -34,12 +34,15 @@ class Zoo implements Serializable {
 
 	private List<Sight> sights;
 
+	private List<Reservation> reservations;
+
 	public Zoo() {
 		employees = new ArrayList<>();
 		animals = new ArrayList<>();
 		loggedJobs = new ArrayList<>();
 		rewardApplicables = new ArrayList<>();
 		sights = new ArrayList<>();
+		reservations = new ArrayList<>();
 		counter++;
 	}
 
@@ -68,6 +71,10 @@ class Zoo implements Serializable {
 		}
 
 		return records;
+	}
+
+	public void reserve(Reservation reservation) {
+		this.reservations.add(reservation);
 	}
 
 	public void createSight(Sight sight) {
@@ -324,6 +331,14 @@ class Zoo implements Serializable {
 
 	public void setAnimals(List<Animal> animals) {
 		this.animals = animals;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	class Moving {

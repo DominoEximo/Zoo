@@ -11,7 +11,13 @@ import java.util.logging.Logger;
 
 import com.sun.tools.sjavac.Log.Level;
 
-public class Main {
+public class Main implements Runnable {
+
+	@Override
+	public void run() {
+		System.out.println("Thread is running.");
+
+	}
 
 	public static void main(String[] args) {
 
@@ -231,6 +237,14 @@ public class Main {
 		storage.loadZoo(foreignZoo);
 
 		logger.info(String.format("%s", foreignZoo.getEployees()));
+		
+		ArrayList<Ticket> tickets = new ArrayList<>();
+		
+		tickets.add(new Ticket(TicketType.ADULT, TicketVariant.FULL_DAY, 1500));
+		
+		for(Integer i = 1; i < 100000; i++ ) {
+			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(),tickets , 25, 1200));
+		}
 
 	}
 
