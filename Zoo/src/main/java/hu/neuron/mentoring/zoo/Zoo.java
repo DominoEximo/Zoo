@@ -76,6 +76,10 @@ class Zoo implements Serializable {
 	public void reserve(Reservation reservation) {
 		this.reservations.add(reservation);
 	}
+	
+	public void flushReservations() {
+		this.reservations.clear();
+	}
 
 	public void createSight(Sight sight) {
 
