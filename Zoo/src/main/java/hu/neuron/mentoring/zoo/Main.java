@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import com.sun.tools.sjavac.Log.Level;
@@ -24,6 +26,12 @@ public class Main implements Runnable {
 		Logger logger = Logger.getLogger(Zoo.class.getName());
 
 		Properties prop = new Properties();
+		
+		Locale locale = new Locale("hu","HU");
+		
+		ResourceBundle defaultLanguage = ResourceBundle.getBundle("config", locale);
+		
+		System.out.println(defaultLanguage);
 
 		try (FileOutputStream output = new FileOutputStream("src/main/resources/config.properties")) {
 
@@ -244,88 +252,88 @@ public class Main implements Runnable {
 
 		ArrayList<Reservation> empty = new ArrayList<>();
 
-		Main obj = new Main();
-
-		Thread thread = new Thread(obj);
-
-		thread.start();
-
-		long begin1 = System.currentTimeMillis();
-
-		for (Integer i = 1; i < 100000; i++) {
-			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-					Calendar.getInstance().getTime(), tickets, 25, 1200));
-		}
-
-		logger.info(String.format("%s", foreignZoo.getReservations()));
-
-		foreignZoo.flushReservations();
-
-		long end1 = System.currentTimeMillis();
-
-		long time1 = end1 - begin1;
-
-		long begin2 = System.currentTimeMillis();
-
-		Thread thread2 = new Thread(obj);
-
-		thread2.start();
-
-		for (Integer i = 1; i < 100000; i++) {
-			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-					Calendar.getInstance().getTime(), tickets, 25, 1200));
-		}
-
-		logger.info(String.format("%s", foreignZoo.getReservations()));
-
-		foreignZoo.flushReservations();
-
-		long end2 = System.currentTimeMillis();
-
-		long time2 = end2 - begin2;
-
-		long begin3 = System.currentTimeMillis();
-
-		Thread thread3 = new Thread(obj);
-
-		thread3.start();
-
-		for (Integer i = 1; i < 100000; i++) {
-			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-					Calendar.getInstance().getTime(), tickets, 25, 1200));
-		}
-
-		logger.info(String.format("%s", foreignZoo.getReservations()));
-
-		foreignZoo.flushReservations();
-
-		long end3 = System.currentTimeMillis();
-
-		long time3 = end3 - begin3;
-
-		long begin4 = System.currentTimeMillis();
-
-		Thread thread4 = new Thread(obj);
-
-		thread4.start();
-
-		for (Integer i = 1; i < 100000; i++) {
-			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-					Calendar.getInstance().getTime(), tickets, 25, 1200));
-		}
-
-		logger.info(String.format("%s", foreignZoo.getReservations()));
-
-		foreignZoo.flushReservations();
-
-		long end4 = System.currentTimeMillis();
-
-		long time4 = end4 - begin4;
-
-		logger.info(String.format("%s", time1));
-		logger.info(String.format("%s", time2));
-		logger.info(String.format("%s", time3));
-		logger.info(String.format("%s", time4));
+//		Main obj = new Main();
+//
+//		Thread thread = new Thread(obj);
+//
+//		thread.start();
+//
+//		long begin1 = System.currentTimeMillis();
+//
+//		for (Integer i = 1; i < 100000; i++) {
+//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
+//					Calendar.getInstance().getTime(), tickets, 25, 1200));
+//		}
+//
+//		logger.info(String.format("%s", foreignZoo.getReservations()));
+//
+//		foreignZoo.flushReservations();
+//
+//		long end1 = System.currentTimeMillis();
+//
+//		long time1 = end1 - begin1;
+//
+//		long begin2 = System.currentTimeMillis();
+//
+//		Thread thread2 = new Thread(obj);
+//
+//		thread2.start();
+//
+//		for (Integer i = 1; i < 100000; i++) {
+//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
+//					Calendar.getInstance().getTime(), tickets, 25, 1200));
+//		}
+//
+//		logger.info(String.format("%s", foreignZoo.getReservations()));
+//
+//		foreignZoo.flushReservations();
+//
+//		long end2 = System.currentTimeMillis();
+//
+//		long time2 = end2 - begin2;
+//
+//		long begin3 = System.currentTimeMillis();
+//
+//		Thread thread3 = new Thread(obj);
+//
+//		thread3.start();
+//
+//		for (Integer i = 1; i < 100000; i++) {
+//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
+//					Calendar.getInstance().getTime(), tickets, 25, 1200));
+//		}
+//
+//		logger.info(String.format("%s", foreignZoo.getReservations()));
+//
+//		foreignZoo.flushReservations();
+//
+//		long end3 = System.currentTimeMillis();
+//
+//		long time3 = end3 - begin3;
+//
+//		long begin4 = System.currentTimeMillis();
+//
+//		Thread thread4 = new Thread(obj);
+//
+//		thread4.start();
+//
+//		for (Integer i = 1; i < 100000; i++) {
+//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
+//					Calendar.getInstance().getTime(), tickets, 25, 1200));
+//		}
+//
+//		logger.info(String.format("%s", foreignZoo.getReservations()));
+//
+//		foreignZoo.flushReservations();
+//
+//		long end4 = System.currentTimeMillis();
+//
+//		long time4 = end4 - begin4;
+//
+//		logger.info(String.format("%s", time1));
+//		logger.info(String.format("%s", time2));
+//		logger.info(String.format("%s", time3));
+//		logger.info(String.format("%s", time4));
 	}
 
 }
