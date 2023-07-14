@@ -24,38 +24,29 @@ public class Main implements Runnable {
 	public static void main(String[] args) {
 
 		Logger logger = Logger.getLogger(Zoo.class.getName());
-
-		Properties prop = new Properties();
 		
-		Locale locale = new Locale("hu","HU");
+		Locale[] supportedLocales = {
+			    Locale.FRENCH,
+			    Locale.GERMAN,
+			    Locale.ENGLISH,
+			    new Locale("hu_HU")
+			};
 		
-		ResourceBundle defaultLanguage = ResourceBundle.getBundle("config", locale);
+		Locale currentLocale = Locale.getDefault();
 		
-		System.out.println(defaultLanguage);
-
-		try (FileOutputStream output = new FileOutputStream("src/main/resources/config.properties")) {
-
-			prop.setProperty("GondoZooExceptionMessage",
-					"Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
-			prop.setProperty("DirectorMissing", "Az állatkertnek nincs igazgatója!");
-			prop.setProperty("GondoZooRequired", "Az állatkertnek szüksége van erre a dolgozóra!");
-
-			prop.store(output, null);
-
-			System.out.println(prop);
-
-		} catch (IOException io) {
-			logger.warning("IO exception!");
+		ResourceBundle defaultLanguage = null;
+		
+		for (Locale locale : supportedLocales) {
+			if (currentLocale.equals(locale)) {
+				defaultLanguage = ResourceBundle.getBundle("config", currentLocale);
+				break;
+			}
+			else {
+				defaultLanguage = ResourceBundle.getBundle("config", Locale.ENGLISH);
+			}
 		}
-
-		try (FileInputStream input = new FileInputStream("src/main/resources/config.properties")) {
-
-			prop.load(input);
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-
+		
+		
 		Zoo zoo1 = new Zoo();
 
 		Calendar adamBirthDate = Calendar.getInstance();
@@ -72,7 +63,7 @@ public class Main implements Runnable {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
+			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
 
 		ArrayList<Species> carlAnimals = new ArrayList<>();
@@ -92,7 +83,7 @@ public class Main implements Runnable {
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
+			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
 
 		Calendar evaBirthDate = Calendar.getInstance();
@@ -109,7 +100,7 @@ public class Main implements Runnable {
 		try {
 			zoo1.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning(prop.getProperty("DirectorMissing"));
+			logger.warning(defaultLanguage.getString("DirectorMissing"));
 		}
 
 		zoo1.setDirector(new Director("Eva", evaBirthDate.getTime(), evaAppointmentDate.getTime(), 'f'));
@@ -133,7 +124,7 @@ public class Main implements Runnable {
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
+			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
 
 		zoo1.listAnimals();
@@ -163,13 +154,13 @@ public class Main implements Runnable {
 		try {
 			zoo2.fireDirector();
 		} catch (ZooEmployeeException e) {
-			logger.warning(prop.getProperty("DirectorMissing"));
+			logger.warning(defaultLanguage.getString("DirectorMissing"));
 		}
 
 		try {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(0));
 		} catch (ZooEmployeeException e) {
-			logger.warning(prop.getProperty("GondoZooRequired"));
+			logger.warning(defaultLanguage.getString("GondoZooRequired"));
 		}
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
@@ -180,7 +171,7 @@ public class Main implements Runnable {
 			zoo2.fireGondoZoo((GondoZoo) zoo2.getEployees().get(1));
 		} catch (ZooEmployeeException e) {
 
-			logger.warning(prop.getProperty("GondoZooRequired"));
+			logger.warning(defaultLanguage.getString("GondoZooRequired"));
 		}
 
 		zoo2.listAnimals();
@@ -236,7 +227,7 @@ public class Main implements Runnable {
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Lengu", Calendar.getInstance().getWeekYear(), 'f'));
 			zoo2.addAnimal(new Animal(Species.PENGUIN, "Aengu", Calendar.getInstance().getWeekYear(), 'f'));
 		} catch (GondoZooNotAvailableException e) {
-			logger.warning(prop.getProperty("GondoZooExceptionMessage"));
+			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
 		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
 
