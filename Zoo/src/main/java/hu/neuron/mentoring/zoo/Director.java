@@ -1,8 +1,13 @@
 package hu.neuron.mentoring.zoo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Director extends Employee {
+public class Director extends Employee implements Serializable{
+
+	public Director() {
+        super();
+    }
 
 	public Director(String name, Date birthDate, Date appointmentDate, Character gender) {
 		super(name, birthDate, appointmentDate, gender);

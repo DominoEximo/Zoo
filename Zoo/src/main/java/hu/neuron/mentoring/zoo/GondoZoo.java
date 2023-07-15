@@ -7,6 +7,11 @@ public class GondoZoo extends Employee {
 
 	private ArrayList<Species> suppliedAnimals;
 
+	public GondoZoo() {
+		super();
+	}
+	
+	
 	public GondoZoo(String name, Date birthDate, Date appointmentDate, Character gender, ArrayList<Species> suppliedAnimals) {
 		super(name, birthDate, appointmentDate, gender);
 		this.suppliedAnimals = suppliedAnimals;

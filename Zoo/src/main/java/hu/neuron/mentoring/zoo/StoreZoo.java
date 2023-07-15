@@ -1,45 +1,49 @@
 package hu.neuron.mentoring.zoo;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.nio.file.Paths;
 import java.util.logging.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 
 public class StoreZoo {
 
 	Logger logger = Logger.getLogger(StoreZoo.class.getName());
 
 	public void saveZoo(Zoo zoo) {
-		try (FileOutputStream f = new FileOutputStream("src/main/resources/SavedZoo.txt");
-				ObjectOutputStream o = new ObjectOutputStream(f)) {
 
-			o.writeObject(zoo);
+		ObjectMapper Obj = new ObjectMapper();
 
-		} catch (IOException io) {
+		try {
+
+			Obj.writeValue(new File("src/main/resources/SavedZoo.json"), zoo);
+
+		} catch (IOException e) {
 			logger.warning("IO Exception!");
+
 		}
 	}
 
 	public void loadZoo(Zoo newZoo) {
-		try (FileInputStream fi = new FileInputStream("src/main/resources/SavedZoo.txt");
-				ObjectInputStream oi = new ObjectInputStream(fi)) {
 
-			Zoo tempZoo = (Zoo) oi.readObject();
+		ObjectMapper mapper = new ObjectMapper();
 
-			newZoo.setAnimals(tempZoo.getAnimals());
-			newZoo.setDirector(tempZoo.getDirector());
+		Zoo tempZoo;
+
+		try {
+			tempZoo = (Zoo) mapper.readValue(Paths.get("src/main/resources/SavedZoo.json").toFile(), Zoo.class);
+			
 			newZoo.setEmployees(tempZoo.getEployees());
-
-		} catch (ClassNotFoundException c) {
-			logger.warning("Nincs lementett állatkert!");
-		} catch (FileNotFoundException e) {
-			logger.info("File not found!");
+			newZoo.setDirector(tempZoo.getDirector());
+			newZoo.setAnimals(tempZoo.getAnimals());
+			newZoo.setReservations(tempZoo.getReservations());
 		} catch (IOException e) {
-			logger.info("IOException!");
+
+			logger.warning("IO Exception!");
 		}
+
 	}
 
 }

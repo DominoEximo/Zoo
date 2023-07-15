@@ -5,12 +5,29 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = GondoZoo.class, name = "GondoZoo"),
+
+    @JsonSubTypes.Type(value = Cleaner.class, name = "Cleaner") }
+)
 public abstract class Employee implements Serializable {
 
 	private String name;
 	private Date birthDate;
 	private Date appointmentDate;
 	private Character gender;
+
+	
+	public Employee() {
+		super();
+	}
 
 	public Employee(String name, Date birthDate, Date appointmentDate, char gender) {
 		this.name = name;

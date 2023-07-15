@@ -235,7 +235,7 @@ public class Main implements Runnable {
 
 		storage.loadZoo(foreignZoo);
 
-		logger.info(String.format("%s", foreignZoo.getEployees()));
+		logger.info(String.format("%s", foreignZoo.getAnimals()));
 
 		ArrayList<Ticket> tickets = new ArrayList<>();
 

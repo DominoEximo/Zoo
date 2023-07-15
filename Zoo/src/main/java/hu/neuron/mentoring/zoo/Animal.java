@@ -8,7 +8,13 @@ public class Animal implements Serializable{
 	private String nickname;
 	private Integer birthDate;
 	private Character gender;
-
+	
+	
+	public Animal() {
+        super();
+    }
+	
+	
 	public Animal(Species species, String nickname, Integer birth_date, Character gender) {
 		super();
 		this.species = species;

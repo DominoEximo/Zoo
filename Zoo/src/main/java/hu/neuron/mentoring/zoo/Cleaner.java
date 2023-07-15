@@ -9,6 +9,10 @@ public class Cleaner extends Employee {
 
 	private List<CleanedArea> cleanedAreas;
 
+	public Cleaner() {
+		super();
+	}
+	
 	public Cleaner(String name, Date birthDate, Date appointmentDate, Character gender, List<CleanedArea> cleanedAreas) {
 		super(name, birthDate,appointmentDate, gender);
 		this.cleanedAreas = cleanedAreas;
