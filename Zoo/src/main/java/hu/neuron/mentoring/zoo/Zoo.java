@@ -338,7 +338,8 @@ class Zoo implements Serializable {
 	}
 
 	public List<Reservation> getReservations() {
-		return reservations;
+		List<Reservation> copy = reservations;
+		return copy;
 	}
 
 	public void setReservations(List<Reservation> reservations) {

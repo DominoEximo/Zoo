@@ -1,52 +1,34 @@
 package hu.neuron.mentoring.zoo;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-import com.sun.tools.sjavac.Log.Level;
-
-public class Main implements Runnable {
-
-	@Override
-	public void run() {
-		System.out.println("Thread is running.");
-
-	}
+public class Main {
 
 	public static void main(String[] args) {
 
 		Logger logger = Logger.getLogger(Zoo.class.getName());
-		
-		Locale[] supportedLocales = {
-			    Locale.FRENCH,
-			    Locale.GERMAN,
-			    Locale.ENGLISH,
-			    new Locale("hu_HU")
-			};
-		
+
+		Locale[] supportedLocales = { Locale.FRENCH, Locale.GERMAN, Locale.ENGLISH, new Locale("hu_HU") };
+
 		Locale currentLocale = Locale.getDefault();
-		
+
 		ResourceBundle defaultLanguage = null;
-		
+
 		for (Locale locale : supportedLocales) {
 			if (currentLocale.equals(locale)) {
 				defaultLanguage = ResourceBundle.getBundle("config", currentLocale);
 				break;
-			}
-			else {
+			} else {
 				defaultLanguage = ResourceBundle.getBundle("config", Locale.ENGLISH);
 			}
 		}
-		
-		
+
 		Zoo zoo1 = new Zoo();
 
 		Calendar adamBirthDate = Calendar.getInstance();
@@ -237,94 +219,23 @@ public class Main implements Runnable {
 
 		logger.info(String.format("%s", foreignZoo.getAnimals()));
 
-		ArrayList<Ticket> tickets = new ArrayList<>();
+		ExecutorService executor = Executors.newFixedThreadPool(4);
 
-		tickets.add(new Ticket(TicketType.ADULT, TicketVariant.FULL_DAY, 1500));
+		long begin = System.currentTimeMillis();
 
-		ArrayList<Reservation> empty = new ArrayList<>();
+		for (Integer i = 1; i < 100000; i++) {
+			ReservationThread reservation = new ReservationThread(foreignZoo);
+			executor.execute(reservation);
+		}
 
-//		Main obj = new Main();
-//
-//		Thread thread = new Thread(obj);
-//
-//		thread.start();
-//
-//		long begin1 = System.currentTimeMillis();
-//
-//		for (Integer i = 1; i < 100000; i++) {
-//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-//					Calendar.getInstance().getTime(), tickets, 25, 1200));
-//		}
-//
-//		logger.info(String.format("%s", foreignZoo.getReservations()));
-//
-//		foreignZoo.flushReservations();
-//
-//		long end1 = System.currentTimeMillis();
-//
-//		long time1 = end1 - begin1;
-//
-//		long begin2 = System.currentTimeMillis();
-//
-//		Thread thread2 = new Thread(obj);
-//
-//		thread2.start();
-//
-//		for (Integer i = 1; i < 100000; i++) {
-//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-//					Calendar.getInstance().getTime(), tickets, 25, 1200));
-//		}
-//
-//		logger.info(String.format("%s", foreignZoo.getReservations()));
-//
-//		foreignZoo.flushReservations();
-//
-//		long end2 = System.currentTimeMillis();
-//
-//		long time2 = end2 - begin2;
-//
-//		long begin3 = System.currentTimeMillis();
-//
-//		Thread thread3 = new Thread(obj);
-//
-//		thread3.start();
-//
-//		for (Integer i = 1; i < 100000; i++) {
-//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-//					Calendar.getInstance().getTime(), tickets, 25, 1200));
-//		}
-//
-//		logger.info(String.format("%s", foreignZoo.getReservations()));
-//
-//		foreignZoo.flushReservations();
-//
-//		long end3 = System.currentTimeMillis();
-//
-//		long time3 = end3 - begin3;
-//
-//		long begin4 = System.currentTimeMillis();
-//
-//		Thread thread4 = new Thread(obj);
-//
-//		thread4.start();
-//
-//		for (Integer i = 1; i < 100000; i++) {
-//			foreignZoo.reserve(new Reservation("PappDavid", Calendar.getInstance().getTime(),
-//					Calendar.getInstance().getTime(), tickets, 25, 1200));
-//		}
-//
-//		logger.info(String.format("%s", foreignZoo.getReservations()));
-//
-//		foreignZoo.flushReservations();
-//
-//		long end4 = System.currentTimeMillis();
-//
-//		long time4 = end4 - begin4;
-//
-//		logger.info(String.format("%s", time1));
-//		logger.info(String.format("%s", time2));
-//		logger.info(String.format("%s", time3));
-//		logger.info(String.format("%s", time4));
+		long end = System.currentTimeMillis();
+
+		long time = end - begin;
+
+		logger.info(String.format("%s", time));
+		
+
+
 	}
 
 }
