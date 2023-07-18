@@ -244,7 +244,7 @@ public class Main {
 					break;
 				}
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				logger.info("Interrupted!");
 			}
 			
 		}
