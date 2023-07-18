@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class Main {
@@ -219,7 +220,7 @@ public class Main {
 
 		logger.info(String.format("%s", foreignZoo.getAnimals()));
 
-		ExecutorService executor = Executors.newFixedThreadPool(4);
+		ExecutorService executor = Executors.newFixedThreadPool(3);
 
 		long begin = System.currentTimeMillis();
 
@@ -227,15 +228,27 @@ public class Main {
 			ReservationThread reservation = new ReservationThread(foreignZoo);
 			executor.execute(reservation);
 		}
-
-		long end = System.currentTimeMillis();
-
-		long time = end - begin;
-
-		logger.info(String.format("%s", time));
+		executor.shutdown();
 		
+		while (true) {
+			try {
+				if (executor.awaitTermination(begin, TimeUnit.NANOSECONDS)) {
+					long end = System.currentTimeMillis();
 
+					long time = end - begin;
 
+					logger.info(String.format("%s", time));
+					
+
+					//foreignZoo.listReservations();
+					break;
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 }

@@ -76,7 +76,7 @@ class Zoo implements Serializable {
 	public void reserve(Reservation reservation) {
 		this.reservations.add(reservation);
 	}
-	
+
 	public void flushReservations() {
 		this.reservations.clear();
 	}
@@ -337,9 +337,15 @@ class Zoo implements Serializable {
 		this.animals = animals;
 	}
 
+	public void listReservations() {
+		for (Reservation reservation : reservations) {
+			System.out.println(reservation);
+		}
+
+	}
+
 	public List<Reservation> getReservations() {
-		List<Reservation> copy = reservations;
-		return copy;
+		return reservations;
 	}
 
 	public void setReservations(List<Reservation> reservations) {
