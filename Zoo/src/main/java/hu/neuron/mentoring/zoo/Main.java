@@ -2,10 +2,13 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -220,27 +223,29 @@ public class Main {
 
 		logger.info(String.format("%s", foreignZoo.getAnimals()));
 
-		ExecutorService executor = Executors.newFixedThreadPool(3);
+		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		long begin = System.currentTimeMillis();
-
-		for (Integer i = 1; i < 100000; i++) {
+		
+		for (Integer i = 1; i <= 100000; i++) {
 			ReservationThread reservation = new ReservationThread(foreignZoo);
 			executor.execute(reservation);
 		}
 		executor.shutdown();
 		
+		
 		while (true) {
+			
 			try {
 				if (executor.awaitTermination(begin, TimeUnit.NANOSECONDS)) {
 					long end = System.currentTimeMillis();
 
 					long time = end - begin;
 
-					logger.info(String.format("%s", time));
+					logger.info(String.format("%s miliseconds elapsed", time));
 					
 
-					//foreignZoo.listReservations();
+					System.out.println(foreignZoo.getReservations().size());
 					break;
 				}
 			} catch (InterruptedException e) {

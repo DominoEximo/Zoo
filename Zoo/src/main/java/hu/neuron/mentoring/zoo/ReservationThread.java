@@ -14,7 +14,8 @@ public class ReservationThread implements Runnable {
 
 	@Override
 	public void run() {
-		reserveTicket(zoo);
+		ReservationService.getInstance().reserveTicket(zoo);
+
 
 	}
 
