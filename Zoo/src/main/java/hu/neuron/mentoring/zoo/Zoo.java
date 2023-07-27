@@ -45,6 +45,17 @@ class Zoo implements Serializable {
 		reservations = new ArrayList<>();
 		counter++;
 	}
+	
+	public Zoo(Director director) {
+		employees = new ArrayList<>();
+		animals = new ArrayList<>();
+		loggedJobs = new ArrayList<>();
+		rewardApplicables = new ArrayList<>();
+		sights = new ArrayList<>();
+		reservations = new ArrayList<>();
+		counter++;
+		this.setDirector(director);
+	}
 
 	static {
 		listZoos();
