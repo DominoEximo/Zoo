@@ -5,7 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Employee implements Serializable {
+
+public abstract class Employee implements LogManager, Serializable{
+
 
 	private String name;
 	private Date birthDate;
