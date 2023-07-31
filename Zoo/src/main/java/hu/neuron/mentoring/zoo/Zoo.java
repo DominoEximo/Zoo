@@ -2,9 +2,13 @@ package hu.neuron.mentoring.zoo;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+
+import java.util.Arrays;
+
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +40,11 @@ class Zoo {
 		animals = new ArrayList<>();
 		loggedJobs = new ArrayList<>();
 		rewardApplicables = new ArrayList<>();
+
 		sights = new ArrayList<>();
+
+		sights = new ArrayList<>();
+
 		counter++;
 	}
 
@@ -46,6 +54,70 @@ class Zoo {
 
 	{
 		logger.info(String.format("Az állatkert megalapulása: %s \n", LocalTime.now()));
+	}
+
+	public void recordJob(Employee employee) {
+		Boolean isValid = false;
+
+		if (employees.contains(employee)) {
+			isValid = true;
+		}
+
+		if (isValid) {
+
+			List<Job> log = employee.logJob(this);
+			loggedJobs.addAll(log);
+
+		} else {
+			logger.info("Ilyen dongozó nem létezik!");
+		}
+
+	}
+
+	public void autoLogAllJobs(List<Employee> list) {
+
+		for (Employee employee : list) {
+			recordJob(employee);
+		}
+	}
+
+	public void listLoggedJobs() {
+		if (loggedJobs.size() == 0) {
+			logger.info("Jelenleg nincsenek feljegyzett munkák.");
+		} else {
+			for (Job job : loggedJobs) {
+				logger.info(String.format("%s", job));
+			}
+		}
+
+	}
+
+	public void checkRewardApplicability() {
+		if (this.employees.size() == 0) {
+			logger.info("Az állatkertnek nincsenek dolgozói!");
+		}
+		for (Employee employee : this.employees) {
+			if (employee instanceof Director) {
+				continue;
+			} else {
+				long diff = Calendar.getInstance().getTimeInMillis() - employee.getAppointmentDate().getTime();
+				TimeUnit time = TimeUnit.DAYS;
+				long difference = time.convert(diff, TimeUnit.MILLISECONDS);
+				if (difference / 365 > 5) {
+					rewardApplicables.add(employee);
+				}
+			}
+		}
+	}
+
+	public void listRewardApplicables() {
+		if (this.rewardApplicables.size() == 0) {
+			logger.info("Jelenleg senki sem részesül jutalomban.");
+		} else {
+			for (Employee rewardable : this.rewardApplicables) {
+				logger.info(String.format("Jutalomban részesül: %s", rewardable.getName()));
+			}
+		}
 	}
 
 	public ArrayList<Job> logJobforGondoZoo(GondoZoo caretaker) {
@@ -94,86 +166,13 @@ class Zoo {
 		return records;
 	}
 
-	public void recordJob(Employee employee) {
-		Boolean isValid = false;
-
-		if (employees.contains(employee)) {
-			isValid = true;
-		}
-
-		if (isValid) {
-			if (employee instanceof GondoZoo) {
-				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
-				loggedJobs.addAll(log);
-			} else if (employee instanceof Cleaner) {
-				ArrayList<Job> log = logJobforCleaner((Cleaner) employee);
-				loggedJobs.addAll(log);
-			}
-		} else {
-			logger.info("Ilyen dongozó nem létezik!");
-		}
-
-	}
-
-	public void autoLogAllJobs(List<Employee> list) {
-
-		for (Employee employee : list) {
-			if (employee instanceof GondoZoo) {
-				ArrayList<Job> log = logJobforGondoZoo((GondoZoo) employee);
-				loggedJobs.addAll(log);
-			} else if (employee instanceof Cleaner) {
-				ArrayList<Job> log = logJobforCleaner((Cleaner) employee);
-				loggedJobs.addAll(log);
-			}
-		}
-	}
-
-	public void listLoggedJobs() {
-		if (loggedJobs.size() == 0) {
-			logger.info("Jelenleg nincsenek feljegyzett munkák.");
-		} else {
-			for (Job job : loggedJobs) {
-				logger.info(String.format("%s", job));
-			}
-		}
-
-	}
-
-	public void checkRewardApplicability() {
-		if (this.employees.size() == 0) {
-			logger.info("Az állatkertnek nincsenek dolgozói!");
-		}
-		for (Employee employee : this.employees) {
-			if (employee instanceof Director) {
-				continue;
-			} else {
-				long diff = Calendar.getInstance().getTimeInMillis() - employee.getAppointmentDate().getTime();
-				TimeUnit time = TimeUnit.DAYS;
-				long difference = time.convert(diff, TimeUnit.MILLISECONDS);
-				if (difference / 365 > 5) {
-					rewardApplicables.add(employee);
-				}
-			}
-		}
-	}
-
-	public void listRewardApplicables() {
-		if (this.rewardApplicables.size() == 0) {
-			logger.info("Jelenleg senki sem részesül jutalomban.");
-		} else {
-			for (Employee rewardable : this.rewardApplicables) {
-				logger.info(String.format("Jutalomban részesül: %s", rewardable.getName()));
-			}
-		}
-
-	}
-
 	public void listAnimalsWithSpecies(Species species) {
 		for (Animal animal : animals) {
 			if (animal.getSpecies().equals(species)) {
 				logger.info(String.format("%s", animal));
 			}
 		}
+
 	}
 
 	public static void listZoos() {
@@ -210,7 +209,7 @@ class Zoo {
 		} else {
 			logger.info(String.format("A %s állatot az állatkert nem tudja fogadni. \n", animal.getSpecies()));
 			throw new GondoZooNotAvailableException();
-			
+
 		}
 	}
 

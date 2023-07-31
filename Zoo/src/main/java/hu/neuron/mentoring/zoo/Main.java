@@ -2,6 +2,7 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import java.util.logging.Logger;
 
 import com.sun.tools.sjavac.Log.Level;
@@ -25,6 +26,8 @@ public class Main {
 
 		zoo1.setDirector(new Director("Adam", adamBirthDate.getTime(), adamAppointmentDate.getTime(), 'm'));
 
+		zoo1.setDirector(new Director("Adam", adamBirthDate.getTime(), adamAppointmentDate.getTime(), 'm'));
+
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
@@ -41,6 +44,9 @@ public class Main {
 		carlBirthDate.set(Calendar.MONTH, Calendar.MARCH);
 		carlBirthDate.set(Calendar.DAY_OF_MONTH, 7);
 		Calendar carlAppointmentDate = Calendar.getInstance();
+
+		zoo1.addEmployee(
+				new GondoZoo("Carl", carlBirthDate.getTime(), carlAppointmentDate.getTime(), 'm', carlAnimals));
 
 		zoo1.addEmployee(
 				new GondoZoo("Carl", carlBirthDate.getTime(), carlAppointmentDate.getTime(), 'm', carlAnimals));
@@ -86,6 +92,9 @@ public class Main {
 		zoo1.addEmployee(
 				new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
 
+		zoo1.addEmployee(
+				new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
+
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
@@ -123,6 +132,8 @@ public class Main {
 		} catch (ZooEmployeeException e) {
 			logger.warning("Az állatkertnek szüksége van erre a dolgozóra!");
 		}
+
+		System.out.println(zoo2.getEployees());
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
 
@@ -191,6 +202,7 @@ public class Main {
 			logger.warning("Az állatkertnek nincs nincs megfelelő gondozója ehhez az állathoz!");
 		}
 		zoo2.listAnimalsWithSpecies(Species.PENGUIN);
+
 	}
 
 }
