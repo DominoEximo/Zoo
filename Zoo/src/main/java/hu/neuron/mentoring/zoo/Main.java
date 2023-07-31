@@ -58,20 +58,21 @@ public class Main {
 			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
 
-		ArrayList<Species> carlAnimals = new ArrayList<>();
+		ArrayList<Species> carlAnimals1 = new ArrayList<>();
 
-		carlAnimals.add(Species.TIGER);
-		carlAnimals.add(Species.PENGUIN);
+		carlAnimals1.add(Species.TIGER);
+		carlAnimals1.add(Species.PENGUIN);
 
-		Calendar carlBirthDate = Calendar.getInstance();
-		carlBirthDate.set(Calendar.YEAR, 1970);
-		carlBirthDate.set(Calendar.MONTH, Calendar.MARCH);
-		carlBirthDate.set(Calendar.DAY_OF_MONTH, 7);
-		Calendar carlAppointmentDate = Calendar.getInstance();
+		Calendar carlBirthDate1 = Calendar.getInstance();
+		carlBirthDate1.set(Calendar.YEAR, 1970);
+		carlBirthDate1.set(Calendar.MONTH, Calendar.MARCH);
+		carlBirthDate1.set(Calendar.DAY_OF_MONTH, 7);
+		Calendar carlAppointmentDate1 = Calendar.getInstance();
 
 		zoo1.addEmployee(
-				new GondoZoo("Carl", carlBirthDate.getTime(), carlAppointmentDate.getTime(), 'm', carlAnimals));
-		System.out.println(zoo1.getEployees());
+				new GondoZoo("Carl", carlBirthDate1.getTime(), carlAppointmentDate1.getTime(), 'm', carlAnimals1));
+		
+		
 
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
@@ -111,16 +112,14 @@ public class Main {
 		earlAppointmentDate.set(Calendar.MONTH, Calendar.JUNE);
 		earlAppointmentDate.set(Calendar.DAY_OF_MONTH, 10);
 
-		zoo1.addEmployee(new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
-		
-		
+		zoo1.addEmployee(
+				new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
+
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
 			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
-		
-		
 
 		zoo1.listAnimals();
 
@@ -145,7 +144,6 @@ public class Main {
 		zoo2.listAnimals();
 
 		zoo2.listEmployees();
-		
 
 		try {
 			zoo2.fireDirector();
@@ -158,8 +156,6 @@ public class Main {
 		} catch (ZooEmployeeException e) {
 			logger.warning(defaultLanguage.getString("GondoZooRequired"));
 		}
-
-		
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
 
@@ -183,8 +179,8 @@ public class Main {
 
 		zoo2.addEmployee(
 				new Cleaner("Bob", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'm', bobAreas));
+
 		
-		System.out.println(zoo2.getEployees());
 
 		ArrayList<CleanedArea> annaAreas = new ArrayList<>();
 

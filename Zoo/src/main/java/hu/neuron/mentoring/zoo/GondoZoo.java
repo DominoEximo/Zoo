@@ -20,7 +20,7 @@ public class GondoZoo extends Employee {
 
 	public GondoZoo(String name, Date birthDate, Date appointmentDate, Character gender,
 			ArrayList<Species> suppliedAnimals) {
-
+		super(name,birthDate,appointmentDate,gender);
 		this.suppliedAnimals = suppliedAnimals;
 	}
 
