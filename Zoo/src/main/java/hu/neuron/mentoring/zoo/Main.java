@@ -2,6 +2,7 @@ package hu.neuron.mentoring.zoo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -10,6 +11,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+
+import java.util.Properties;
+
 import java.util.logging.Logger;
 
 public class Main {
@@ -46,6 +50,8 @@ public class Main {
 
 		zoo1.setDirector(new Director("Adam", adamBirthDate.getTime(), adamAppointmentDate.getTime(), 'm'));
 
+		zoo1.setDirector(new Director("Adam", adamBirthDate.getTime(), adamAppointmentDate.getTime(), 'm'));
+
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
 		} catch (GondoZooNotAvailableException e) {
@@ -65,6 +71,7 @@ public class Main {
 
 		zoo1.addEmployee(
 				new GondoZoo("Carl", carlBirthDate.getTime(), carlAppointmentDate.getTime(), 'm', carlAnimals));
+		System.out.println(zoo1.getEployees());
 
 		try {
 			zoo1.addAnimal(new Animal(Species.TIGER, "Tigi", 20140502, 'f'));
@@ -104,14 +111,16 @@ public class Main {
 		earlAppointmentDate.set(Calendar.MONTH, Calendar.JUNE);
 		earlAppointmentDate.set(Calendar.DAY_OF_MONTH, 10);
 
-		zoo1.addEmployee(
-				new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
-
+		zoo1.addEmployee(new GondoZoo("Earl", earlBirthDate.getTime(), earlAppointmentDate.getTime(), 'm', earlAnimals));
+		
+		
 		try {
 			zoo1.addAnimal(new Animal(Species.GIRAFFE, "Giri", 20160911, 'm'));
 		} catch (GondoZooNotAvailableException e) {
 			logger.warning(defaultLanguage.getString("GondoZooExceptionMessage"));
 		}
+		
+		
 
 		zoo1.listAnimals();
 
@@ -136,6 +145,7 @@ public class Main {
 		zoo2.listAnimals();
 
 		zoo2.listEmployees();
+		
 
 		try {
 			zoo2.fireDirector();
@@ -148,6 +158,8 @@ public class Main {
 		} catch (ZooEmployeeException e) {
 			logger.warning(defaultLanguage.getString("GondoZooRequired"));
 		}
+
+		
 
 		zoo2.sellAnimal(zoo2.getAnimals().get(0));
 
@@ -171,6 +183,8 @@ public class Main {
 
 		zoo2.addEmployee(
 				new Cleaner("Bob", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 'm', bobAreas));
+		
+		System.out.println(zoo2.getEployees());
 
 		ArrayList<CleanedArea> annaAreas = new ArrayList<>();
 
@@ -226,16 +240,15 @@ public class Main {
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		long begin = System.currentTimeMillis();
-		
+
 		for (Integer i = 1; i <= 100000; i++) {
 			ReservationThread reservation = new ReservationThread(foreignZoo);
 			executor.execute(reservation);
 		}
 		executor.shutdown();
-		
-		
+
 		while (true) {
-			
+
 			try {
 				if (executor.awaitTermination(begin, TimeUnit.NANOSECONDS)) {
 					long end = System.currentTimeMillis();
@@ -243,7 +256,6 @@ public class Main {
 					long time = end - begin;
 
 					logger.info(String.format("%s miliseconds elapsed", time));
-					
 
 					System.out.println(foreignZoo.getReservations().size());
 					break;
@@ -251,9 +263,9 @@ public class Main {
 			} catch (InterruptedException e) {
 				logger.info("Interrupted!");
 			}
-			
+
 		}
-		
+
 	}
 
 }

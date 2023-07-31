@@ -1,30 +1,26 @@
 package hu.neuron.mentoring.zoo;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes({
-    @JsonSubTypes.Type(value = GondoZoo.class, name = "GondoZoo"),
+@JsonSubTypes({ @JsonSubTypes.Type(value = GondoZoo.class, name = "GondoZoo"),
 
-    @JsonSubTypes.Type(value = Cleaner.class, name = "Cleaner") }
-)
-public abstract class Employee implements Serializable {
+		@JsonSubTypes.Type(value = Cleaner.class, name = "Cleaner") })
+public abstract class Employee implements LogManager, Serializable {
 
+	private static final long serialVersionUID = 7491430318788362737L;
 	private String name;
 	private Date birthDate;
 	private Date appointmentDate;
 	private Character gender;
 
-	
 	public Employee() {
 		super();
 	}

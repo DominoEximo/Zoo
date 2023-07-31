@@ -1,1 +1,1 @@
-{"director":{"@type":"Director","name":"Bella","birthDate":null,"appointmentDate":null,"gender":"f"},"animals":[],"reservations":[],"eployees":[]}
+{"director":{"@type":"Director","name":"Eva","birthDate":639237624267,"appointmentDate":1262358024267,"gender":"f"},"animals":[{"species":"TIGER","nickname":"Tigi","gender":"f","birth_date":20140502},{"species":"GIRAFFE","nickname":"Giri","gender":"m","birth_date":20160911}],"reservations":[],"eployees":[{"@type":"GondoZoo","name":null,"birthDate":null,"appointmentDate":null
